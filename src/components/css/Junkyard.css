@@ -1,0 +1,22 @@
+main > section > div.J {
+	flex: 1 1 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+main > section > div.J > aside {
+	height: 60%;
+	flex: 1 1 60%;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+main > section > div.J > aside > label {
+	width: 40%;
+	display: flex;
+	justify-content: space-evenly;
+}
