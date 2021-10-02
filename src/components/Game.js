@@ -12,6 +12,7 @@ class Game extends React.Component {
 
 	constructor(props) {
 		super(props);
+		
 		this.hideNotice = this.hideNotice.bind(this);
 		this.onNavButtonClick = this.onNavButtonClick.bind(this);
 		this.onSupplyBuy = this.onSupplyBuy.bind(this);
@@ -27,7 +28,9 @@ class Game extends React.Component {
 		this.onStoreroomSell = this.onStoreroomSell.bind(this);
 		this.onStoreroomSold = this.onStoreroomSold.bind(this);
 		this.onVehicleSell = this.onVehicleSell.bind(this);
+		
 		this.state = {
+			
 			showTab: 'Junkyard',
 			noticeMessage: '.',
 			noticeColor: 'transparent',
@@ -44,7 +47,7 @@ class Game extends React.Component {
 			storeroomVehicle: [],
 			sellingVehicle: null,
 			supplyVehicle: null,
-			supplyTime: 12
+			supplyTime: 10
 		};
 	}
 
@@ -72,7 +75,7 @@ class Game extends React.Component {
 			if (this.state.supplyVehicle) {
 				this.setState({
 					supplyVehicle: null,
-					supplyTime: 120
+					supplyTime: 90
 				});
 			} else {
 				clearTimeout(this.noticeTimer);
@@ -115,7 +118,7 @@ class Game extends React.Component {
 				level: state.point + state.supplyVehicle.level >= state.level * 1000 ? state.level + 1 : state.level,
 				point: (state.point + state.supplyVehicle.level) % (state.level * 1000),
 				supplyVehicle: null,
-				supplyTime: 120
+				supplyTime: 60
 			};
 		});
 		this.supplyTimer = setInterval(this.updateSupply, 1e3);
@@ -124,7 +127,7 @@ class Game extends React.Component {
 		clearInterval(this.supplyTimer);
 		this.setState({
 			supplyVehicle: null,
-			supplyTime: 12
+			supplyTime: 15
 		});
 		this.supplyTimer = setInterval(this.updateSupply, 1e3);
 	}
