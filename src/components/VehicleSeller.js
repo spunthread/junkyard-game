@@ -12,7 +12,7 @@ class VehicleSeller extends React.Component {
 		};
 	}
 	updatePrice() {
-		this.props.vehicle.parts.filter(part => !part.sold).forEach(part => part.price = Math.random() * this.props.vehicle.price * part.ratio * 1.6);
+		this.props.vehicle.parts.filter(part => !part.sold).forEach(part => part.price = this.props.vehicle.price * part.ratio * (0.6 + Math.random()));
 	}
 	onSell(ev) {
 		const partNumber = Number(ev.target.value);
