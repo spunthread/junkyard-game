@@ -26,31 +26,45 @@ export default props => {
 	const [inV, setInV] = useState(null);
 	const [time, setTime] = useState(12);
 
-	const updateSupply = () => { console.log('updateSupply called');
-		if (time === 0) {
-			if (inV == null) {
-				setInV(new Vehicle(level));
-				setTime(30);
-			} else {
-				setInV(null);
-				setTime(120);
-			}
-		} else setTime(time - 1);
+	const updateSupply = () => {
+		console.log('updateSupply called');
+		if (time === 0) setInV(ogVehicle => {
+			setTime(ogVehicle ? 90 : 30);
+			return ogVehicle ? null : new Vehicle(level);
+		});
+		else setTime(ogTime => ogTime - 1);
 	};
 	useEffect(() => {
 		const updatesupply = setTimeout(updateSupply, 1e3);
 		return () => clearTimeout(updatesupply);
 	}, [time]);
 
-	const onSupplyBuy = () => { console.log('onSupplyBuy called');
-		// check money, if low && show message, in red color
-		// check spaceP - vehicleP.len < 1 if low && show message, in red color
-		// clear supply interval
-		// change state of money to - inV.price
-		// change state of vehicleP.concat inV
+	const onSupplyBuy = () => {
+		console.log('onSupplyBuy called');
 		if (money < inV.price) {
 			// set message, in red color
+			console.log('Not Enough Money !');
+			return;
 		}
+		if (spaceP - vehicleP < 1) {
+			// set message, in red color
+			console.log('Parkinglot is Full !');
+			return;
+		}
+		setInV(ogVehicle => {
+			setMoney(ogMoney => ogMoney - ogVehicle.price);
+			setLevel(ogLevel => {
+				const max = ogLevel * 1000;
+				let total = 0;
+				setPoint(ogPoint => {
+					total = ogPoint + ogVehicle.level;
+					return total % max;
+				});
+				return total >= max ? ogLevel + 1 : ogLevel;
+			});
+			return null;
+		});
+		setTime(60);
 	};
 	const onSupplySkip = () => { console.log('onSupplySkip called'); };
 
@@ -65,20 +79,9 @@ export default props => {
 				level={level}
 				point={point}
 				energy={energy}
-			/>
-			<Body
-				current={current}
-				spaceP={spaceP}
-				spaceW={spaceW}
-				spaceS={spaceS}
-				vehicleP={vehicleP}
-				vehicleW={vehicleW}
-				vehicleS={vehicleS}
-				inV={inV}
-				time={time}
-				onSupplyBuy={onSupplyBuy}
-				onSupplySkip={onSupplySkip}
-			/>
-		</>
+			/> <
+		Body current = { current } spaceP = { spaceP } spaceW = { spaceW } spaceS = { spaceS } vehicleP = { vehicleP } vehicleW = { vehicleW } vehicleS = { vehicleS } inV = { inV } time = { time } onSupplyBuy = { onSupplyBuy } onSupplySkip = { onSupplySkip }
+		/> <
+		/>
 	);
 };
