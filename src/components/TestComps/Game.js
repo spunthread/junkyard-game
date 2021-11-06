@@ -6,12 +6,10 @@ import Vehicle from "../../vehicle";
 export default props => {
 
 	const [current, setCurrent] = useState('Junkyard');
-	const [message, setMessage] = useState('');
-	const [color, setColor] = useState('transparent');
+	const [{message, color}, setNote] = useState({ message: '', color: 'transparent' });
 
 	const [money, setMoney] = useState(250);
-	const [level, setLevel] = useState(1);
-	const [point, setPoint] = useState(0);
+	const [{level, point}, setScore] = useState({ level: 1, point: 0 });
 	const [energy, setEnergy] = useState(25);
 
 	const [spaceP, setSpaceP] = useState(1);
@@ -25,62 +23,81 @@ export default props => {
 	const [outV, setOutV] = useState(null);
 	const [inV, setInV] = useState(null);
 	const [time, setTime] = useState(12);
+	
+	useEffect(() => {
+		if (!message) return null;
+		const timeout = setTimeout(() => setNote({ message: '', color: 'transparent' }), 24e2);
+		return () => clearTimeout(timeout);
+	}, [message]);
 
 	const updateSupply = () => {
+		if (time === 0) {
+			if (inV == null) {
+				setTime(30);
+				setInV(new Vehicle(level));
+				setNote({ message: 'New Vehicle Arrived !!', color: 'green'});
+			} else {
+				setTime(90);
+				setInV(null);
+			}
+		} else {
+			setTime(ogTime => ogTime - 1);
+		}
+	/*
 		setTime(ogTime => {
-			if (ogTime === 0) {
-				let t = 0;
+			if (!ogTime) {
+				
 				setInV(ogVehicle => {
 					if (!ogVehicle) {
-						t = 30;
+						time = 30;
 						setMessage('New Vehicle arrived !!');
 						setColor('green');
 						return new Vehicle(level);
 					} else {
-						t = 90;
+						time = 90;
 						return null;
 					}
 				});
-				console.log('t is', t);
+				
 				return t;
+				
 			} else {
 				return ogTime - 1;
 			}
 		});
+	*/
 	};
 	useEffect(() => {
-		const updatesupply = setTimeout(updateSupply, 1e3);
-		return () => clearTimeout(updatesupply);
-	}, [time]);
+		const interval = setInterval(updateSupply, 1e3);
+		return () => clearInterval(interval);
+	}, []);
 
 	const onSupplyBuy = () => {
-		if (money < inV.price) {
-			setMessage('Not Enough Money !');
-			setColor('red');
-			return;
-		}
-		if (spaceP - vehicleP < 1) {
-			setMessage('Parkinglot is Full !');
-			setColor('red');
-			return;
-		}
+		if (money < inV.price)
+			return setNote({ message: 'Not Enough Money !', color: 'red' });
+
+		if (spaceP - vehicleP < 1)
+			return setNote({ message: 'Parkinglot is Full !', color: 'red' });
+
 		setInV(ogVehicle => {
 			setMoney(ogMoney => ogMoney - ogVehicle.price);
-			setLevel(ogLevel => {
+			setScore(({level: ogLevel, point: ogPoint}) => {
 				const max = ogLevel * 1000;
-				let total = 0;
-				setPoint(ogPoint => {
-					total = ogPoint + ogVehicle.level;
-					return total % max;
-				});
-				console.log('total is', total);
-				return total >= max ? ogLevel + 1 : ogLevel;
+				const total = ogPoint + ogVehicle.level;
+				const level = total >= max ? ogLevel + 1 : ogLevel;
+				const point = total % max;
+				return { level, point };
 			});
 			return null;
 		});
 		setTime(60);
 	};
-	const onSupplySkip = () => { console.log('onSupplySkip called'); };
+
+	const onSupplySkip = () => {
+		console.log('onSupplySkip called');
+		setInV(null);
+		setTime(15);
+	};
 
 	return (
 		<>
