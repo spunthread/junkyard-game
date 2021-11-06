@@ -12,7 +12,6 @@ class Game extends React.Component {
 
 	constructor(props) {
 		super(props);
-		
 		this.hideNotice = this.hideNotice.bind(this);
 		this.onNavButtonClick = this.onNavButtonClick.bind(this);
 		this.onSupplyBuy = this.onSupplyBuy.bind(this);
@@ -28,11 +27,9 @@ class Game extends React.Component {
 		this.onStoreroomSell = this.onStoreroomSell.bind(this);
 		this.onStoreroomSold = this.onStoreroomSold.bind(this);
 		this.onVehicleSell = this.onVehicleSell.bind(this);
-		
 		this.state = {
-			
 			showTab: 'Junkyard',
-			noticeMessage: '.',
+			noticeMessage: '\0',
 			noticeColor: 'transparent',
 
 			money: 250,
@@ -57,7 +54,7 @@ class Game extends React.Component {
 	}
 	hideNotice() {
 		this.setState({
-			noticeMessage: '.',
+			noticeMessage: '\0',
 			noticeColor: 'transparent'
 		});
 	}
