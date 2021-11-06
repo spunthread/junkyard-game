@@ -22,7 +22,7 @@ export default props => {
 
 	const [outV, setOutV] = useState(null);
 	const [inV, setInV] = useState(null);
-	const [time, setTime] = useState(12);
+	const [time, setTime] = useState(10);
 	
 	useEffect(() => {
 		if (!message) return null;
@@ -68,19 +68,20 @@ export default props => {
 	*/
 	};
 	useEffect(() => {
-		const interval = setInterval(updateSupply, 1e3);
-		return () => clearInterval(interval);
-	}, []);
+		const timeout = setTimeout(updateSupply, 1e3);
+		return () => clearTimeout(timeout);
+	}, [time]);
 
 	const onSupplyBuy = () => {
 		if (money < inV.price)
 			return setNote({ message: 'Not Enough Money !', color: 'red' });
 
-		if (spaceP - vehicleP < 1)
+		if (spaceP - vehicleP.length < 1)
 			return setNote({ message: 'Parkinglot is Full !', color: 'red' });
 
 		setInV(ogVehicle => {
 			setMoney(ogMoney => ogMoney - ogVehicle.price);
+			setVehicleP(ogVehicleP => ogVehicleP.concat(ogVehicle));
 			setScore(({level: ogLevel, point: ogPoint}) => {
 				const max = ogLevel * 1000;
 				const total = ogPoint + ogVehicle.level;
@@ -94,7 +95,6 @@ export default props => {
 	};
 
 	const onSupplySkip = () => {
-		console.log('onSupplySkip called');
 		setInV(null);
 		setTime(15);
 	};
