@@ -29,7 +29,7 @@ class Game extends React.Component {
 		this.onVehicleSell = this.onVehicleSell.bind(this);
 		this.state = {
 			showTab: 'Junkyard',
-			noticeMessage: '\0',
+			noticeMessage: '',
 			noticeColor: 'transparent',
 
 			money: 250,
@@ -54,7 +54,7 @@ class Game extends React.Component {
 	}
 	hideNotice() {
 		this.setState({
-			noticeMessage: '\0',
+			noticeMessage: '',
 			noticeColor: 'transparent'
 		});
 	}
