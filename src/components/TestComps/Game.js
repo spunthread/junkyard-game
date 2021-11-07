@@ -29,6 +29,19 @@ export default props => {
 		const timeout = setTimeout(() => setNote({ message: '', color: 'transparent' }), 24e2);
 		return () => clearTimeout(timeout);
 	}, [message]);
+	
+	const updateEnergy = () => {
+		setScore(ogScore => {
+			const max = ogScore.level * 100;
+			setEnergy(ogEnergy => ogEnergy < max ? ogEnergy + 1 : ogEnergy);
+			return ogScore;
+		});
+	};
+	useEffect(() => {
+		const interval = setInterval(updateEnergy, 3e4);
+		return () => clearInterval(interval);
+	}, []);
+	// This might not work easily needs testing
 
 	const updateSupply = () => {
 		if (time === 0) {
