@@ -54,6 +54,14 @@ export default props => {
 		return () => clearTimeout(timeout);
 	}, [time]);
 
+	const newScore = (score, inc) => {
+		const max = score.level * 1000;
+		const total = score.point + inc;
+		const level = total >= max ? score.level + 1 : score.level;
+		const point = total % max;
+		return { level, point };
+	};
+
 	const onSupplyBuy = () => {
 		if (money < inV.price)
 			return setNote({ message: 'Not Enough Money !', color: 'red' });
@@ -64,13 +72,7 @@ export default props => {
 		setInV(ogVehicle => {
 			setMoney(ogMoney => ogMoney - ogVehicle.price);
 			setVehicleP(ogVehicleP => ogVehicleP.concat(ogVehicle));
-			setScore(({level: ogLevel, point: ogPoint}) => {
-				const max = ogLevel * 1000;
-				const total = ogPoint + ogVehicle.level;
-				const level = total >= max ? ogLevel + 1 : ogLevel;
-				const point = total % max;
-				return { level, point };
-			});
+			setScore(ogScore => newScore(ogScore, ogVehicle.level));
 			return null;
 		});
 		setTime(60);

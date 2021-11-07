@@ -7,7 +7,7 @@ export default props => {
 				<p>Storeroom: <span>{props.countS}/{props.spaceS}</span></p>
 			</aside>
 			<aside>
-				{array.length ? <>
+				{props.inV ? <>
 					<span>{props.inV.name}</span>,
 					<img src={props.inV.img} alt="🚘️" width="48" height="48" />,
 					<span>${props.inV.price.toFixed(2)}</span>,
