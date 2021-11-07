@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Head from "./Head";
 import Body from "./Body";
 import Vehicle from "../../vehicle";
@@ -26,22 +26,14 @@ export default props => {
 	
 	useEffect(() => {
 		if (!message) return null;
-		const timeout = setTimeout(() => setNote({ message: '', color: 'transparent' }), 24e2);
+		const timeout = setTimeout(() => setNote({ message: '', color: 'transparent' }), 25e2);
 		return () => clearTimeout(timeout);
 	}, [message]);
-	
-	const updateEnergy = () => {
-		setScore(ogScore => {
-			const max = ogScore.level * 100;
-			setEnergy(ogEnergy => ogEnergy < max ? ogEnergy + 1 : ogEnergy);
-			return ogScore;
-		});
-	};
+
 	useEffect(() => {
-		const interval = setInterval(updateEnergy, 3e4);
-		return () => clearInterval(interval);
-	}, []);
-	// This might not work easily needs testing
+		const timeout = setTimeout(() => (energy < (level * 100)) && setEnergy(energy + 1), 3e4);
+		return () => clearTimeout(timeout);
+	}, [energy, level]);
 
 	const updateSupply = () => {
 		if (time === 0) {
@@ -56,29 +48,6 @@ export default props => {
 		} else {
 			setTime(ogTime => ogTime - 1);
 		}
-	/*
-		setTime(ogTime => {
-			if (!ogTime) {
-				
-				setInV(ogVehicle => {
-					if (!ogVehicle) {
-						time = 30;
-						setMessage('New Vehicle arrived !!');
-						setColor('green');
-						return new Vehicle(level);
-					} else {
-						time = 90;
-						return null;
-					}
-				});
-				
-				return t;
-				
-			} else {
-				return ogTime - 1;
-			}
-		});
-	*/
 	};
 	useEffect(() => {
 		const timeout = setTimeout(updateSupply, 1e3);
