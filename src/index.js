@@ -1,11 +1,5 @@
-import "./components/css/index.css";
-import React from "react";
-import ReactDOM from "react-dom";
-import Game from "./components/TestComps/Game";
+import { createRoot } from 'react-dom/client'
+import App from './App'
 
-ReactDOM.render(
-	<React.StrictMode>
-		<Game />
-	</React.StrictMode>,
-	document.getElementById('root')
-);
+const root = createRoot(document.getElementById('root'))
+root.render(<App />)
