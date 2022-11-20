@@ -1,11 +1,9 @@
-import { useContext } from "react"
-import { GlobalContext } from "../GlobalContext"
+import { useContext } from "react";
+import { GlobalContext } from "../GlobalContext";
 
 export default function Garage() {
-  console.log('Garage Render', Date.now())
-
-  const { state } = useContext(GlobalContext)
-  const { garage, garagemax } = state
+  const { save } = useContext(GlobalContext);
+  const { garage, garagemax } = save;
 
   return (
     <section>
@@ -20,5 +18,5 @@ export default function Garage() {
         </div>
       </aside>
     </section>
-  )
+  );
 }

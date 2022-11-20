@@ -1,43 +1,75 @@
-import { useEffect, useReducer } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { GlobalContext, globalReducer, globalState } from './GlobalContext'
-import Nav from './comps/nav'
-import Header from './comps/header'
-import Storage from './pages/storage'
-import Garage from './pages/garage'
-import Market from './pages/market'
-import Parking from './pages/parking'
-import Junkyard from './pages/junkyard'
-import NotFound from './pages/notfound'
+import { useEffect, useReducer, useState } from "react";
+import { GlobalContext, globalReducer, globalState } from "./GlobalContext";
+import Header from "./comps/header";
+import Storage from "./pages/storage";
+import Garage from "./pages/garage";
+import Market from "./pages/market";
+import Parking from "./pages/parking";
+import Junkyard from "./pages/junkyard";
 
 export default function App() {
-	console.log('App Render', Date.now())
+  const [loc, setLoc] = useState(0);
 
-	const [state, dispatch] = useReducer(globalReducer, globalState)
+  const [save, dispatch] = useReducer(globalReducer, globalState);
 
-	// Non Ideal the entire app and all sub components rerendered every 3 sec
-	useEffect(() => {
-		console.log('App Effected', Date.now())
-		// react dom diffs the markup but still has to rerun all js layer logics
-		const eid = setInterval(() => dispatch({ type: 'ENERGYINCREASE' }), 3e3)
-		return () => clearInterval(eid)
-		// please check render behaviour with context consumers and ideally try to abstract the state as a class with props and methods
-	}, [])
+  // energy auto increase timer
+  useEffect(() => {
+    const eid = setInterval(() => dispatch({ type: "ENERGYTIME" }), 3e4);
+    return () => clearInterval(eid);
+  }, []);
 
-	return (
-		<GlobalContext.Provider value={{ state, dispatch }}>
-			<BrowserRouter>
-				<Header />
-				<Routes>
-					<Route path="/" element={<Junkyard />} />
-					<Route path="parking" element={<Parking />} />
-					<Route path="garage" element={<Garage />} />
-					<Route path="storage" element={<Storage />} />
-					<Route path="market" element={<Market />} />
-					<Route path="*" element={<NotFound />} />
-				</Routes>
-				<Nav />
-			</BrowserRouter>
-		</GlobalContext.Provider>
-	)
+  // junkyard vehicle timer
+  useEffect(() => {
+    const yid = setInterval(() => {
+      const { yardtime, junkyard } = save;
+      if (yardtime === 0) {
+        if (junkyard === null) {
+          dispatch({ type: "NEWVEHICLE" });
+        } else {
+          dispatch({ type: "DELETEVEHICLE" });
+        }
+      } else {
+        dispatch({ type: "KILLTIME", payload: yardtime - 1 });
+      }
+    }, 1e3);
+
+    return () => clearInterval(yid);
+  }, [save.junkyard, save.yardtime]);
+
+  return (
+    <GlobalContext.Provider value={{ save, dispatch }}>
+      <Header />
+
+      {loc === 0 && <Junkyard />}
+      {loc === 1 && <Parking />}
+      {loc === 2 && <Garage />}
+      {loc === 3 && <Storage />}
+      {loc === 4 && <Market />}
+
+      <nav>
+        <ul>
+          <li>
+            <button disabled={loc === 0} onClick={() => setLoc(0)}>
+              Junkyard
+            </button>
+          </li>
+          <li>
+            <button disabled={loc === 1} onClick={() => setLoc(1)}>
+              Parking
+            </button>
+          </li>
+          <li>
+            <button disabled={loc === 2} onClick={() => setLoc(2)}>
+              Garage
+            </button>
+          </li>
+          <li>
+            <button disabled={loc === 3} onClick={() => setLoc(3)}>
+              Storage
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </GlobalContext.Provider>
+  );
 }
