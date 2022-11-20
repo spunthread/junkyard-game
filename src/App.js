@@ -24,9 +24,9 @@ export default function App() {
       const { yardtime, junkyard } = save;
       if (yardtime === 0) {
         if (junkyard === null) {
-          dispatch({ type: "NEWVEHICLE" });
+          dispatch({ type: "GENERATEVEHICLE" });
         } else {
-          dispatch({ type: "DELETEVEHICLE" });
+          dispatch({ type: "DESTROYVEHICLE" });
         }
       } else {
         dispatch({ type: "KILLTIME", payload: yardtime - 1 });

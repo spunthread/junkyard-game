@@ -39,12 +39,25 @@ export const globalReducer = (save, action) => {
     case "KILLTIME": {
       return { ...save, yardtime: payload };
     }
-    case "NEWVEHICLE": {
+    case "SKIPVEHICLE": {
+      return { ...save, junkyard: null, yardtime: 30 };
+    }
+    case "BUYVEHICLE": {
+      const { money, junkyard, parking } = save;
+      return {
+        ...save,
+        money: money - junkyard.price,
+        parking: parking.concat(junkyard),
+        junkyard: null,
+        yardtime: 60
+      };
+    }
+    case "GENERATEVEHICLE": {
       const { level } = save;
       const vehicle = new Vehicle(level);
       return { ...save, junkyard: vehicle, yardtime: 30 };
     }
-    case "DELETEVEHICLE": {
+    case "DESTROYVEHICLE": {
       return { ...save, junkyard: null, yardtime: 90 };
     }
     case "SAVE": {

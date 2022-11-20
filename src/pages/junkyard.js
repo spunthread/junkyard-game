@@ -2,9 +2,18 @@ import { useContext } from "react";
 import { GlobalContext } from "../GlobalContext";
 
 export default function Junkyard() {
-  const { save } = useContext(GlobalContext);
-  const { junkyard, yardtime, garage, garagemax, parking, parkingmax, storage, storagemax } =
-    save;
+  const { save, dispatch } = useContext(GlobalContext);
+  const {
+    junkyard,
+    yardtime,
+    money,
+    garage,
+    garagemax,
+    parking,
+    parkingmax,
+    storage,
+    storagemax
+  } = save;
 
   return (
     <section>
@@ -31,8 +40,15 @@ export default function Junkyard() {
               <figcaption>{junkyard.name}</figcaption>
             </figure>
             <div>
-              <button>Skip</button>
-              <button>Buy</button>
+              <button onClick={() => dispatch({ type: "SKIPVEHICLE" })}>Skip</button>
+              <button
+                onClick={() => {
+                  if (money < junkyard.price) console.log("Not Enough Money");
+                  else if (parking.length === parkingmax) console.log("Parking Space Full");
+                  else dispatch({ type: "BUYVEHICLE" });
+                }}>
+                Buy
+              </button>
             </div>
           </>
         ) : (
