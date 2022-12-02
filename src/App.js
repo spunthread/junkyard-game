@@ -21,15 +21,14 @@ export default function App() {
   // junkyard vehicle timer
   useEffect(() => {
     const yid = setInterval(() => {
-      const { yardtime, junkyard } = save;
-      if (yardtime === 0) {
-        if (junkyard === null) {
+      if (save.yardtime === 0) {
+        if (save.junkyard === null) {
           dispatch({ type: "GENERATEVEHICLE" });
         } else {
           dispatch({ type: "DESTROYVEHICLE" });
         }
       } else {
-        dispatch({ type: "KILLTIME", payload: yardtime - 1 });
+        dispatch({ type: "KILLTIME", payload: save.yardtime - 1 });
       }
     }, 1e3);
 

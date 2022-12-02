@@ -3,17 +3,7 @@ import { GlobalContext } from "../GlobalContext";
 
 export default function Junkyard() {
   const { save, dispatch } = useContext(GlobalContext);
-  const {
-    junkyard,
-    yardtime,
-    money,
-    garage,
-    garagemax,
-    parking,
-    parkingmax,
-    storage,
-    storagemax
-  } = save;
+  const { junkyard, yardtime, money, garage, garagemax, parking, parkingmax, storage, storagemax } = save;
 
   return (
     <section>
