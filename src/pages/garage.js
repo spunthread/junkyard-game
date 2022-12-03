@@ -1,12 +1,10 @@
-import { useContext } from "react";
-import { GlobalContext } from "../GlobalContext";
+import { useSave } from "../SaveContext";
 
 export default function Garage() {
-  const { save } = useContext(GlobalContext);
-  const { garage, garagemax } = save;
+  const { garage, garagemax } = useSave();
 
   return (
-    <section>
+    <fieldset>
       <aside>
         <div>
           <p>Cars: {garage.length}</p>
@@ -17,6 +15,6 @@ export default function Garage() {
           <button>Expand</button>
         </div>
       </aside>
-    </section>
+    </fieldset>
   );
 }

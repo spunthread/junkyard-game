@@ -1,12 +1,13 @@
-import { useContext } from "react";
-import { GlobalContext } from "../GlobalContext";
+import { useAlert, useSave, useSaveDispatch } from "../SaveContext";
 
 export default function Junkyard() {
-  const { save, dispatch } = useContext(GlobalContext);
-  const { junkyard, yardtime, money, garage, garagemax, parking, parkingmax, storage, storagemax } = save;
+  const { junkyard, yardtime, garage, garagemax, parking, parkingmax, storage, storagemax } =
+    useSave();
+  const dispatch = useSaveDispatch();
+  const alert = useAlert();
 
   return (
-    <section>
+    <fieldset>
       <aside>
         <div>
           Garage Cars: {garage.length}
@@ -30,15 +31,8 @@ export default function Junkyard() {
               <figcaption>{junkyard.name}</figcaption>
             </figure>
             <div>
-              <button onClick={() => dispatch({ type: "SKIPVEHICLE" })}>Skip</button>
-              <button
-                onClick={() => {
-                  if (money < junkyard.price) console.log("Not Enough Money");
-                  else if (parking.length === parkingmax) console.log("Parking Space Full");
-                  else dispatch({ type: "BUYVEHICLE" });
-                }}>
-                Buy
-              </button>
+              <button onClick={() => dispatch({ type: "SKIPVEHICLE", alert })}>Skip</button>
+              <button onClick={() => dispatch({ type: "BUYVEHICLE", alert })}>Buy</button>
             </div>
           </>
         ) : (
@@ -46,6 +40,6 @@ export default function Junkyard() {
         )}
         <h5>Timer: {yardtime} sec</h5>
       </article>
-    </section>
+    </fieldset>
   );
 }

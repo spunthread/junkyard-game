@@ -1,12 +1,10 @@
-import { useContext } from "react";
-import { GlobalContext } from "../GlobalContext";
+import { useSave } from "../SaveContext";
 
 export default function Storage() {
-  const { save } = useContext(GlobalContext);
-  const { storage, storagemax } = save;
+  const { storage, storagemax } = useSave();
 
   return (
-    <section>
+    <fieldset>
       <aside>
         <div>
           <p>Cars: {storage.length}</p>
@@ -17,6 +15,6 @@ export default function Storage() {
           <button>Expand</button>
         </div>
       </aside>
-    </section>
+    </fieldset>
   );
 }

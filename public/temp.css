@@ -1,0 +1,53 @@
+.container {
+  z-index: 9999;
+  position: fixed;
+  padding: 4px;
+  width: 80%;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.bottom-center {
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast {
+  position: relative;
+  min-height: 64px;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  padding: 8px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  max-height: 800px;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.info {
+  background-color: #3498db;
+}
+
+.success {
+  background-color: #25d42a;
+}
+
+.warning {
+  background-color: #e6ba0d;
+}
+
+.error {
+  background-color: #e24332;
+}
+
+.message {
+  margin: auto 0;
+  flex: 1 1 auto;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+}

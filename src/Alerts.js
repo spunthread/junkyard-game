@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-export function useAlert() {
+export function useAlertAction() {
   const [list, setList] = useState([]);
 
   const addAlert = useCallback(

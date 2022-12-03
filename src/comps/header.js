@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { GlobalContext } from "../GlobalContext";
+import { useAlert, useSave, useSaveDispatch } from "../SaveContext";
 
 export default function Header() {
-  const { save, dispatch } = useContext(GlobalContext);
-  const { money, points, level, energy } = save;
+  const { money, points, level, energy } = useSave();
+  const dispatch = useSaveDispatch();
+  const alert = useAlert();
 
   return (
     <header>
@@ -17,7 +17,7 @@ export default function Header() {
         <p>{level * 1e2}</p>
       </div>
       <div>
-        <button onClick={() => dispatch({ type: "SAVE" })}>Save</button>
+        <button onClick={() => dispatch({ type: "SAVEGAME", alert })}>Save</button>
       </div>
     </header>
   );

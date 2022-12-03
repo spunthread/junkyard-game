@@ -1,6 +1,6 @@
 export default function Market() {
   return (
-    <section>
+    <fieldset>
       <aside>
         <div>
           <p>Buy: $</p>
@@ -12,6 +12,6 @@ export default function Market() {
           <p>Car Image</p>
         </div>
       </aside>
-    </section>
+    </fieldset>
   );
 }
