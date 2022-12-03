@@ -19,19 +19,19 @@ export default function Parking() {
       </aside>
       <article>
         {parking.size === 0 ? (
-          <div>No Vehicles in Parking</div>
+          <p>No Vehicles in Parking</p>
         ) : (
-          <div>
-            {Array.from(parking.values()).map((pv) => (
-              <figure key={pv.id}>
+          Array.from(parking.values()).map((pv) => (
+            <div key={pv.id}>
+              <figure>
                 <img src={pv.imgsrc} alt={pv.name} />
-                <figcaption>${pv.parking}</figcaption>
+                <figcaption>ϟ{pv.parking}</figcaption>
                 <button onClick={() => dispatch({ type: "MOVEVEHICLE", vid: pv.id, alert })}>
                   Move
                 </button>
               </figure>
-            ))}
-          </div>
+            </div>
+          ))
         )}
       </article>
     </fieldset>

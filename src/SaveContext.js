@@ -109,7 +109,7 @@ function saveReducer(save, action) {
     }
     case "NEXTTICK": {
       // TODO implementing next tick
-      const { energy, energytime, level, yardtime, junkyard } = save;
+      const { energy, energytime, level, yardtime, junkyard, garage } = save;
 
       if (energytime === 0) {
         save.energy = Math.min(energy + 10, level * 100);
@@ -134,6 +134,28 @@ function saveReducer(save, action) {
       } else {
         save.yardtime = yardtime - 1;
       }
+
+      Array.from(garage.values()).forEach((gv) => {
+        const { stage, parts } = gv;
+        if (!isNaN(stage) && stage > -1) {
+          if (parts[stage].time === 0) {
+            if (stage + 1 === parts.length) {
+              gv.stage = -1;
+              gv.time = 0;
+              action.alert({
+                type: "info",
+                title: "Vehicle Done !",
+                text: "A vhicle has been dismantled completely."
+              });
+            } else {
+              gv.stage = stage + 1;
+              gv.time = parts[stage + 1].time;
+            }
+          } else {
+            parts[stage].time -= 1;
+          }
+        }
+      });
 
       return { ...save };
     }
@@ -201,6 +223,63 @@ function saveReducer(save, action) {
       save.energy = energy - vehicle.parking;
       save.garage.set(action.vid, vehicle);
       save.parking.delete(action.vid);
+      action.alert({
+        type: "success",
+        title: "Vehicle Moved !",
+        text: "The vehicle has been moved in the garage area."
+      });
+      return { ...save };
+    }
+    case "WORKVEHICLE": {
+      const { energy, garage } = save;
+      const vehicle = garage.get(action.vid);
+
+      if (energy < vehicle.garage) {
+        action.alert({
+          type: "danger",
+          title: "You're Tired !",
+          text: "Not enough energy to work on this vehicle."
+        });
+        return save;
+      }
+
+      save.energy = energy - vehicle.garage;
+      vehicle.stage = 0;
+      vehicle.time = vehicle.parts[0].time;
+      return { ...save };
+    }
+    case "STOREVEHICLE": {
+      const { energy, points, level, garage, storage, storagemax } = save;
+      const vehicle = garage.get(action.vid);
+
+      if (energy < vehicle.storage) {
+        action.alert({
+          type: "danger",
+          title: "You're Tired !",
+          text: "Not enough energy to store this vehicle's parts."
+        });
+        return save;
+      }
+
+      if (storage.size === storagemax) {
+        action.alert({
+          type: "warning",
+          title: "Too Crammed Yo !",
+          text: "Not enough space in the storage area."
+        });
+        return save;
+      }
+
+      save.energy = energy - vehicle.storage;
+      save.points = (points + vehicle.level * 10) % (level * 1e3);
+      save.level = level + (points + vehicle.level * 10 >= level * 1e3);
+      save.storage.set(action.vid, vehicle);
+      save.garage.delete(action.vid);
+      action.alert({
+        type: "success",
+        title: "Vehicle Stored !",
+        text: "The vehicle's parts has been stored in the storage area."
+      });
       return { ...save };
     }
     case "SAVEGAME": {

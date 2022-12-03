@@ -13,66 +13,68 @@ export default class Vehicle {
           100
       ) / 100;
     this.parking = vconf.energy[0];
-    this.garage = vconf.energy[2];
     this.storage = vconf.energy[1];
+    this.garage = vconf.energy[2];
+    this.stage = NaN;
+    this.time = 0;
     this.parts = [
       {
-        // battery
         price: 0,
+        name: "Battery",
         time: vconf.time[1],
         ratio: vconf.ratio[5]
       },
       {
-        // fluids
         price: 0,
+        name: "Fluids",
         time: vconf.time[0],
         ratio: vconf.ratio[0]
       },
       {
-        // electronics
         price: 0,
+        name: "Electronics",
         time: vconf.time[6],
         ratio: vconf.ratio[2]
       },
       {
-        // rims
         price: 0,
+        name: "Rims",
         time: vconf.time[2],
         ratio: vconf.ratio[3]
       },
       {
-        // brakes
         price: 0,
+        name: "Brakes",
         time: vconf.time[3],
         ratio: vconf.ratio[1]
       },
       {
-        // windows
         price: 0,
+        name: "Windows",
         time: vconf.time[4],
         ratio: vconf.ratio[4]
       },
       {
-        // engine
         price: 0,
+        name: "Engine",
         time: vconf.time[9],
         ratio: vconf.ratio[9]
       },
       {
-        // transmission
         price: 0,
+        name: "Transmission",
         time: vconf.time[8],
         ratio: vconf.ratio[8]
       },
       {
-        // drivetrain
         price: 0,
+        name: "Drivetrain",
         time: vconf.time[7],
         ratio: vconf.ratio[7]
       },
       {
-        // scrap
         price: 0,
+        name: "Scrap",
         time: vconf.time[5],
         ratio: vconf.ratio[6]
       }
