@@ -7,7 +7,7 @@ export default function Header() {
 
   return (
     <header>
-      <div>${money}</div>
+      <div>${money.toFixed(2)}</div>
       <div>
         <p>{points}</p>
         <p>{level}</p>

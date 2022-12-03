@@ -10,35 +10,37 @@ export default function Junkyard() {
     <fieldset>
       <aside>
         <div>
-          Garage Cars: {garage.length}
-          Garage Space {garagemax}
-        </div>
-        <div>
-          Parking Cars: {parking.length}
+          Parking Cars: {parking.size}
           Parking Space {parkingmax}
         </div>
         <div>
-          Storage Cars: {storage.length}
+          Garage Cars: {garage.size}
+          Garage Space {garagemax}
+        </div>
+        <div>
+          Storage Cars: {storage.size}
           Storage Space {storagemax}
         </div>
       </aside>
       <article>
-        {Boolean(junkyard) ? (
-          <>
+        <div>
+          {Boolean(junkyard) ? (
             <figure>
-              <img alt="." />
-              <figcaption>${junkyard.price}</figcaption>
+              <img src={junkyard.imgsrc} alt={junkyard.name} />
               <figcaption>{junkyard.name}</figcaption>
+              <figcaption>
+                <strong>${junkyard.price.toFixed(2)}</strong>
+              </figcaption>
+              <figcaption>
+                <button onClick={() => dispatch({ type: "SKIPVEHICLE", alert })}>Skip</button>
+                <button onClick={() => dispatch({ type: "BUYVEHICLE", alert })}>Buy</button>
+              </figcaption>
             </figure>
-            <div>
-              <button onClick={() => dispatch({ type: "SKIPVEHICLE", alert })}>Skip</button>
-              <button onClick={() => dispatch({ type: "BUYVEHICLE", alert })}>Buy</button>
-            </div>
-          </>
-        ) : (
-          <h5>Next Please ...</h5>
-        )}
-        <h5>Timer: {yardtime} sec</h5>
+          ) : (
+            <h4>Next Please ...</h4>
+          )}
+          <h5>Timer: {yardtime} sec</h5>
+        </div>
       </article>
     </fieldset>
   );

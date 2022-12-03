@@ -44,11 +44,79 @@ function saveReducer(save, action) {
       save.place = action.place;
       return { ...save };
     }
+    case "EXPANDPARKING": {
+      const { money, parkingmax } = save;
+
+      if (money < parkingmax * 1e3) {
+        action.alert({
+          type: "danger",
+          title: "You're Broke !",
+          text: "Not enough money to expand parking space."
+        });
+        return save;
+      }
+
+      save.money = money - parkingmax * 1e3;
+      save.parkingmax = parkingmax + 1;
+      action.alert({
+        type: "success",
+        title: "Parking Expanded !",
+        text: "Parking space has now been expanded for use."
+      });
+      return { ...save };
+    }
+    case "EXPANDGARAGE": {
+      const { money, garagemax } = save;
+
+      if (money < garagemax * 2e3) {
+        action.alert({
+          type: "danger",
+          title: "You're Broke !",
+          text: "Not enough money to expand garage space."
+        });
+        return save;
+      }
+
+      save.money = money - garagemax * 2e3;
+      save.garagemax = garagemax + 1;
+      action.alert({
+        type: "success",
+        title: "Garage Expanded !",
+        text: "Garage space has now been expanded for use."
+      });
+      return { ...save };
+    }
+    case "EXPANDSTORAGE": {
+      const { money, storagemax } = save;
+
+      if (money < storagemax * 15e2) {
+        action.alert({
+          type: "danger",
+          title: "You're Broke !",
+          text: "Not enough money to expand storage space."
+        });
+        return save;
+      }
+
+      save.money = money - storagemax * 15e2;
+      save.storagemax = storagemax + 1;
+      action.alert({
+        type: "success",
+        title: "Storage Expanded !",
+        text: "Storage space has now been expanded for use."
+      });
+      return { ...save };
+    }
     case "NEXTTICK": {
       // TODO implementing next tick
-      const { energy, level, yardtime, junkyard } = save;
+      const { energy, energytime, level, yardtime, junkyard } = save;
 
-      save.energy = Math.min(energy + 10, level * 100);
+      if (energytime === 0) {
+        save.energy = Math.min(energy + 10, level * 100);
+        save.energytime = 30;
+      } else {
+        save.energytime = energytime - 1;
+      }
 
       if (yardtime === 0) {
         if (junkyard === null) {
@@ -75,7 +143,7 @@ function saveReducer(save, action) {
       return { ...save };
     }
     case "BUYVEHICLE": {
-      const { money, junkyard, parking, parkingmax } = save;
+      const { money, points, level, junkyard, parking, parkingmax } = save;
 
       if (money < junkyard.price) {
         action.alert({
@@ -86,7 +154,7 @@ function saveReducer(save, action) {
         return save;
       }
 
-      if (parking.length === parkingmax) {
+      if (parking.size === parkingmax) {
         action.alert({
           type: "warning",
           title: "Too Crammed Yo !",
@@ -96,7 +164,9 @@ function saveReducer(save, action) {
       }
 
       save.money = money - junkyard.price;
-      save.parking.push(junkyard);
+      save.points = (points + junkyard.level) % (level * 1e3);
+      save.level = level + (points + junkyard.level >= level * 1e3);
+      save.parking.set(junkyard.id, junkyard);
       save.junkyard = null;
       save.yardtime = 60;
       action.alert({
@@ -106,8 +176,40 @@ function saveReducer(save, action) {
       });
       return { ...save };
     }
+    case "MOVEVEHICLE": {
+      const { energy, parking, garage, garagemax } = save;
+      const vehicle = parking.get(action.vid);
+
+      if (energy < vehicle.parking) {
+        action.alert({
+          type: "danger",
+          title: "You're Tired !",
+          text: "Not enough energy to move this vehicle."
+        });
+        return save;
+      }
+
+      if (garage.size === garagemax) {
+        action.alert({
+          type: "warning",
+          title: "Too Crammed Yo !",
+          text: "Not enough space in the garage area."
+        });
+        return save;
+      }
+
+      save.energy = energy - vehicle.parking;
+      save.garage.set(action.vid, vehicle);
+      save.parking.delete(action.vid);
+      return { ...save };
+    }
     case "SAVEGAME": {
-      localStorage.setItem("save", JSON.stringify(save));
+      localStorage.setItem(
+        "save",
+        JSON.stringify(save, (_, value) =>
+          value instanceof Map ? { dataType: "Map", value: Array.from(value.entries()) } : value
+        )
+      );
       action.alert({
         type: "success",
         title: "Game Saved !",
@@ -123,15 +225,16 @@ function saveReducer(save, action) {
 
 const defaultSave = {
   place: 0,
-  money: 500,
+  money: 5000,
   points: 0,
   level: 1,
   energy: 60,
-  parking: [],
+  energytime: 30,
+  parking: new Map(),
   parkingmax: 1,
-  garage: [],
+  garage: new Map(),
   garagemax: 1,
-  storage: [],
+  storage: new Map(),
   storagemax: 1,
   junkyard: null,
   yardtime: 15,
@@ -140,4 +243,10 @@ const defaultSave = {
 
 const storage = localStorage.getItem("save");
 
-const initialSave = storage ? JSON.parse(storage) : defaultSave;
+const initialSave = storage
+  ? JSON.parse(storage, (_, value) =>
+      typeof value === "object" && value !== null && value.dataType === "Map"
+        ? new Map(value.value)
+        : value
+    )
+  : defaultSave;
