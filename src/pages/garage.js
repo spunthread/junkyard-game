@@ -19,7 +19,7 @@ export default function Garage() {
       </aside>
       <article>
         {garage.size === 0 ? (
-          <p>No Vehicles in Parking</p>
+          <p>No Vehicles in Garage</p>
         ) : (
           Array.from(garage.values()).map((gv) => (
             <div key={gv.id}>
@@ -27,14 +27,21 @@ export default function Garage() {
                 <img src={gv.imgsrc} alt={gv.name} />
                 <figcaption>{gv.name}</figcaption>
               </figure>
-              {isNaN(gv.stage) ? (
+              {gv.stage === -1 ? (
                 <div>
                   <p>ϟ{gv.garage}</p>
                   <button onClick={() => dispatch({ type: "WORKVEHICLE", vid: gv.id, alert })}>
                     Start
                   </button>
                 </div>
-              ) : gv.stage > -1 ? (
+              ) : gv.stage === gv.parts.length ? (
+                <div>
+                  <p>ϟ{gv.storage}</p>
+                  <button onClick={() => dispatch({ type: "STOREVEHICLE", vid: gv.id, alert })}>
+                    Store
+                  </button>
+                </div>
+              ) : (
                 <>
                   <figure>
                     <img alt="." />
@@ -50,13 +57,6 @@ export default function Garage() {
                       value={gv.time - gv.parts[gv.stage].time}></progress>
                   </div>
                 </>
-              ) : (
-                <div>
-                  <p>ϟ{gv.storage}</p>
-                  <button onClick={() => dispatch({ type: "STOREVEHICLE", vid: gv.id, alert })}>
-                    Store
-                  </button>
-                </div>
               )}
             </div>
           ))

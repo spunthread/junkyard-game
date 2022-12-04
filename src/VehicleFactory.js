@@ -15,7 +15,7 @@ export default class Vehicle {
     this.parking = vconf.energy[0];
     this.storage = vconf.energy[1];
     this.garage = vconf.energy[2];
-    this.stage = NaN;
+    this.stage = -1;
     this.time = 0;
     this.parts = [
       {

@@ -109,7 +109,8 @@ function saveReducer(save, action) {
     }
     case "NEXTTICK": {
       // TODO implementing next tick
-      const { energy, energytime, level, yardtime, junkyard, garage } = save;
+      const { place, energy, energytime, level, yardtime, junkyard, garage, market, marktime } =
+        save;
 
       if (energytime === 0) {
         save.energy = Math.min(energy + 10, level * 100);
@@ -137,10 +138,10 @@ function saveReducer(save, action) {
 
       Array.from(garage.values()).forEach((gv) => {
         const { stage, parts } = gv;
-        if (!isNaN(stage) && stage > -1) {
+        if (stage > -1 && stage < parts.length) {
           if (parts[stage].time === 0) {
+            gv.stage = stage + 1;
             if (stage + 1 === parts.length) {
-              gv.stage = -1;
               gv.time = 0;
               action.alert({
                 type: "info",
@@ -148,7 +149,6 @@ function saveReducer(save, action) {
                 text: "A vhicle has been dismantled completely."
               });
             } else {
-              gv.stage = stage + 1;
               gv.time = parts[stage + 1].time;
             }
           } else {
@@ -156,6 +156,17 @@ function saveReducer(save, action) {
           }
         }
       });
+
+      if (market !== null) {
+        if (marktime === 0) {
+          if (place === 4) {
+            save.market.stage += 1;
+          }
+          save.marktime = 3;
+        } else {
+          save.marktime = marktime - 1;
+        }
+      }
 
       return { ...save };
     }
@@ -282,6 +293,32 @@ function saveReducer(save, action) {
       });
       return { ...save };
     }
+    case "SELLVEHICLE": {
+      const { storage } = save;
+      const vehicle = storage.get(action.vid);
+      save.market = vehicle;
+      save.place = 4;
+      return { ...save };
+    }
+    case "SELLPART": {
+      const { money, points, level, market, storage } = save;
+
+      save.money = money + action.price;
+      save.points = (points + market.level) % (level * 1e3);
+      save.level = level + (points + market.level >= level * 1e3);
+      market.parts[action.pix].price = action.price;
+
+      if (market.parts.every((p) => p.price > 0)) {
+        storage.delete(market.id);
+        action.alert({
+          type: "success",
+          title: "Vehicle Sold !",
+          text: "The Vehicle parts are sold, good job."
+        });
+      }
+
+      return { ...save };
+    }
     case "SAVEGAME": {
       localStorage.setItem(
         "save",
@@ -317,7 +354,8 @@ const defaultSave = {
   storagemax: 1,
   junkyard: null,
   yardtime: 15,
-  market: null
+  market: null,
+  marktime: 3
 };
 
 const storage = localStorage.getItem("save");
