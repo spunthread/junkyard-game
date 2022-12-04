@@ -7,25 +7,34 @@ export default function Junkyard() {
   const alert = useAlert();
 
   return (
-    <fieldset>
+    <section>
       <aside>
-        <div>
-          Parking Cars: {parking.size}
-          Parking Space {parkingmax}
-        </div>
-        <div>
-          Garage Cars: {garage.size}
-          Garage Space {garagemax}
-        </div>
-        <div>
-          Storage Cars: {storage.size}
-          Storage Space {storagemax}
-        </div>
+        <h2>Junkyard</h2>
       </aside>
-      <article>
+      <article className="junkyard-article">
+        <div>
+          <p>
+            Parking:{" "}
+            <strong>
+              {parking.size}/{parkingmax}
+            </strong>
+          </p>
+          <p>
+            Garage:{" "}
+            <strong>
+              {garage.size}/{garagemax}
+            </strong>
+          </p>
+          <p>
+            Storage:{" "}
+            <strong>
+              {storage.size}/{storagemax}
+            </strong>
+          </p>
+        </div>
         <div>
           {Boolean(junkyard) ? (
-            <figure>
+            <figure className="junkyard-figure">
               <img src={junkyard.imgsrc} alt={junkyard.name} />
               <figcaption>{junkyard.name}</figcaption>
               <figcaption>
@@ -37,11 +46,11 @@ export default function Junkyard() {
               </figcaption>
             </figure>
           ) : (
-            <h4>Next Please ...</h4>
+            <h3>Next Please ...</h3>
           )}
-          <h5>Timer: {yardtime} sec</h5>
+          <h4>Timer: {yardtime} sec</h4>
         </div>
       </article>
-    </fieldset>
+    </section>
   );
 }

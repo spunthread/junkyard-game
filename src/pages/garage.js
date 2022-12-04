@@ -6,12 +6,13 @@ export default function Garage() {
   const alert = useAlert();
 
   return (
-    <fieldset>
+    <section>
       <aside>
         <div>
           <p>Cars: {garage.size}</p>
           <p>Space {garagemax}</p>
         </div>
+        <h2>Garage</h2>
         <div>
           <strong>${garagemax * 2e3}</strong>
           <button onClick={() => dispatch({ type: "EXPANDGARAGE", alert })}>Expand</button>
@@ -62,6 +63,6 @@ export default function Garage() {
           ))
         )}
       </article>
-    </fieldset>
+    </section>
   );
 }

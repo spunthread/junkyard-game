@@ -6,12 +6,13 @@ export default function Storage() {
   const alert = useAlert();
 
   return (
-    <fieldset>
+    <section>
       <aside>
         <div>
           <p>Cars: {storage.size}</p>
           <p>Space {storagemax}</p>
         </div>
+        <h2>Storage</h2>
         <div>
           <strong>${storagemax * 15e2}</strong>
           <button onClick={() => dispatch({ type: "EXPANDSTORAGE", alert })}>Expand</button>
@@ -33,6 +34,6 @@ export default function Storage() {
           ))
         )}
       </article>
-    </fieldset>
+    </section>
   );
 }

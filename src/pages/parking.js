@@ -6,12 +6,13 @@ export default function Parking() {
   const alert = useAlert();
 
   return (
-    <fieldset>
+    <section>
       <aside>
         <div>
           <p>Cars: {parking.size}</p>
           <p>Space {parkingmax}</p>
         </div>
+        <h2>Parking</h2>
         <div>
           <strong>${parkingmax * 1e3}</strong>
           <button onClick={() => dispatch({ type: "EXPANDPARKING", alert })}>Expand</button>
@@ -34,6 +35,6 @@ export default function Parking() {
           ))
         )}
       </article>
-    </fieldset>
+    </section>
   );
 }

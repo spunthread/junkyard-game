@@ -20,12 +20,13 @@ export default function Market() {
   );
 
   return (
-    <fieldset>
+    <section>
       <aside>
         <figure>
           <img src={market.imgsrc} alt={market.name} />
           <figcaption>{market.name}</figcaption>
         </figure>
+        <h2>Market</h2>
         <div>
           <p>
             Buy: <strong>${market.price.toFixed(2)}</strong>
@@ -63,6 +64,6 @@ export default function Market() {
           </figure>
         ))}
       </article>
-    </fieldset>
+    </section>
   );
 }

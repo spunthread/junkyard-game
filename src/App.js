@@ -14,10 +14,10 @@ export default function App() {
   }, [alert, dispatch]);
 
   return (
-    <section className="game">
+    <>
       <Header />
       <Place />
       <Nav />
-    </section>
+    </>
   );
 }

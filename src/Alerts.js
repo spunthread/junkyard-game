@@ -19,7 +19,7 @@ function Alert({ type, title, text, delAlert }) {
   return (
     <div className={`alert alert-${type}`} role="alert" onClick={delAlert}>
       <h4 className="alert-title">{title}</h4>
-      <div className="text-muted">{text}</div>
+      <div className="alert-text">{text}</div>
     </div>
   );
 }
