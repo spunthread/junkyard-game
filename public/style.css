@@ -78,21 +78,57 @@ section > article {
   display: flex;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
 .junkyard-article > div {
   flex: 1 1 100%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
+}
+
+.junkyard-left {
+  justify-content: space-evenly;
   align-items: center;
 }
 
-.junkyard-figure {
-  margin: 0.4rem 0.2rem;
-  display: flex;
+.junkyard-left > p {
+  padding: 0.8rem;
+  border: 1px solid black;
+  border-radius: 1rem;
 }
 
-.junkyard-figure > img {
-  max-width: 3.6rem;
+.junkyard-right {
+  justify-content: space-evenly;
+  align-items: stretch;
+  /* text-align: center; */
+}
+
+.junkyard-right > h3 {
+  flex: 1 1 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.junkyard-figure {
+  margin: 0;
+  flex: 1 1 70%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.junkyard-controls > button {
+  margin: 0 0.6rem;
+  padding: 0.36rem 0.8rem;
 }
 
 nav {
@@ -144,6 +180,9 @@ nav > div > button {
 }
 
 .alert-text {
+  font-size: 0.64rem;
+  line-height: 1rem;
+  font-weight: 400;
   margin-bottom: 0;
   color: #585a5c;
 }

@@ -12,7 +12,7 @@ export default function Junkyard() {
         <h2>Junkyard</h2>
       </aside>
       <article className="junkyard-article">
-        <div>
+        <div className="junkyard-left">
           <p>
             Parking:{" "}
             <strong>
@@ -32,7 +32,7 @@ export default function Junkyard() {
             </strong>
           </p>
         </div>
-        <div>
+        <div className="junkyard-right">
           {Boolean(junkyard) ? (
             <figure className="junkyard-figure">
               <img src={junkyard.imgsrc} alt={junkyard.name} />
@@ -40,7 +40,7 @@ export default function Junkyard() {
               <figcaption>
                 <strong>${junkyard.price.toFixed(2)}</strong>
               </figcaption>
-              <figcaption>
+              <figcaption className="junkyard-controls">
                 <button onClick={() => dispatch({ type: "SKIPVEHICLE", alert })}>Skip</button>
                 <button onClick={() => dispatch({ type: "BUYVEHICLE", alert })}>Buy</button>
               </figcaption>
@@ -48,7 +48,7 @@ export default function Junkyard() {
           ) : (
             <h3>Next Please ...</h3>
           )}
-          <h4>Timer: {yardtime} sec</h4>
+          <h3>Timer: {yardtime} sec</h3>
         </div>
       </article>
     </section>
