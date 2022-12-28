@@ -1,9 +1,9 @@
 import { useSave } from "../SaveContext";
-import Junkyard from "../pages/junkyard";
-import Parking from "../pages/parking";
-import Garage from "../pages/garage";
-import Storage from "../pages/storage";
-import Market from "../pages/market";
+import Junkyard from "./junkyard";
+import Parking from "./parking";
+import Garage from "./garage";
+import Storage from "./storage";
+import Market from "./market";
 
 export default function Place() {
   const { place } = useSave();

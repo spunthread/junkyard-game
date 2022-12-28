@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { AlertContainer, useAlertAction } from "./Alerts";
 import Vehicle from "./VehicleFactory";
 
@@ -11,6 +11,11 @@ const SaveDispatchContext = createContext(null);
 export function SaveProvider({ children }) {
   const [alerts, alert] = useAlertAction();
   const [save, dispatch] = useReducer(saveReducer, initialSave);
+
+  useEffect(() => {
+    const iid = setInterval(() => dispatch({ type: "NEXTTICK", alert }), 1e3);
+    return () => clearInterval(iid);
+  }, [alert, dispatch]);
 
   return (
     <SaveContext.Provider value={save}>
@@ -51,7 +56,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "danger",
           title: "You're Broke !",
-          text: "Not enough money to expand parking space."
+          text: "Not enough money to expand Parking."
         });
         return save;
       }
@@ -61,7 +66,7 @@ function saveReducer(save, action) {
       action.alert({
         type: "success",
         title: "Parking Expanded !",
-        text: "Parking space has now been expanded for use."
+        text: `Maximum upto ${parkingmax + 1} Vehicles.`
       });
       return { ...save };
     }
@@ -72,7 +77,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "danger",
           title: "You're Broke !",
-          text: "Not enough money to expand garage space."
+          text: "Not enough money to expand Garage."
         });
         return save;
       }
@@ -82,7 +87,7 @@ function saveReducer(save, action) {
       action.alert({
         type: "success",
         title: "Garage Expanded !",
-        text: "Garage space has now been expanded for use."
+        text: `Maximum upto ${garagemax + 1} Vehicles.`
       });
       return { ...save };
     }
@@ -93,7 +98,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "danger",
           title: "You're Broke !",
-          text: "Not enough money to expand storage space."
+          text: "Not enough money to expand Storage."
         });
         return save;
       }
@@ -103,12 +108,11 @@ function saveReducer(save, action) {
       action.alert({
         type: "success",
         title: "Storage Expanded !",
-        text: "Storage space has now been expanded for use."
+        text: `Maximum upto ${storagemax + 1} Vehicles.`
       });
       return { ...save };
     }
     case "NEXTTICK": {
-      // TODO implementing next tick
       const { place, energy, energytime, level, yardtime, junkyard, garage, market, marktime } =
         save;
 
@@ -126,7 +130,7 @@ function saveReducer(save, action) {
           action.alert({
             type: "info",
             title: "New Vehicle !",
-            text: "Grabe it before it's too late."
+            text: "Grabe it before it's gone."
           });
         } else {
           save.junkyard = null;
@@ -145,8 +149,8 @@ function saveReducer(save, action) {
               gv.time = 0;
               action.alert({
                 type: "info",
-                title: "Vehicle Done !",
-                text: "A vhicle has been dismantled completely."
+                title: "Vehicle Overhauled !",
+                text: "Store the parts for selling."
               });
             } else {
               gv.time = parts[stage + 1].time;
@@ -182,7 +186,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "danger",
           title: "You're Broke !",
-          text: "Not enough money to buy this vehicle."
+          text: "Not enough money for Vehicle."
         });
         return save;
       }
@@ -190,8 +194,8 @@ function saveReducer(save, action) {
       if (parking.size === parkingmax) {
         action.alert({
           type: "warning",
-          title: "Too Crammed Yo !",
-          text: "Not enough space in the parking area."
+          title: "Too Crammed !",
+          text: "Not enough space in Parking."
         });
         return save;
       }
@@ -205,7 +209,7 @@ function saveReducer(save, action) {
       action.alert({
         type: "success",
         title: "Vehicle Bought !",
-        text: "The new vehicle is in the parking area."
+        text: "Find it in the Parking."
       });
       return { ...save };
     }
@@ -217,7 +221,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "danger",
           title: "You're Tired !",
-          text: "Not enough energy to move this vehicle."
+          text: "Not enough energy for Vehicle."
         });
         return save;
       }
@@ -225,8 +229,8 @@ function saveReducer(save, action) {
       if (garage.size === garagemax) {
         action.alert({
           type: "warning",
-          title: "Too Crammed Yo !",
-          text: "Not enough space in the garage area."
+          title: "Too Crammed !",
+          text: "Not enough space in Garage."
         });
         return save;
       }
@@ -237,7 +241,7 @@ function saveReducer(save, action) {
       action.alert({
         type: "success",
         title: "Vehicle Moved !",
-        text: "The vehicle has been moved in the garage area."
+        text: "Overhaul it in the Garage."
       });
       return { ...save };
     }
@@ -249,7 +253,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "danger",
           title: "You're Tired !",
-          text: "Not enough energy to work on this vehicle."
+          text: "Not enough energy for Vehicle."
         });
         return save;
       }
@@ -267,7 +271,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "danger",
           title: "You're Tired !",
-          text: "Not enough energy to store this vehicle's parts."
+          text: "Not enough energy for Vehicle."
         });
         return save;
       }
@@ -275,8 +279,8 @@ function saveReducer(save, action) {
       if (storage.size === storagemax) {
         action.alert({
           type: "warning",
-          title: "Too Crammed Yo !",
-          text: "Not enough space in the storage area."
+          title: "Too Crammed !",
+          text: "Not enough space in Storage."
         });
         return save;
       }
@@ -289,7 +293,7 @@ function saveReducer(save, action) {
       action.alert({
         type: "success",
         title: "Vehicle Stored !",
-        text: "The vehicle's parts has been stored in the storage area."
+        text: "Sell it's parts from the Storage."
       });
       return { ...save };
     }
@@ -313,7 +317,7 @@ function saveReducer(save, action) {
         action.alert({
           type: "success",
           title: "Vehicle Sold !",
-          text: "The Vehicle parts are sold, good job."
+          text: "All Vehicle parts sold."
         });
       }
 
@@ -329,7 +333,7 @@ function saveReducer(save, action) {
       action.alert({
         type: "success",
         title: "Game Saved !",
-        text: "See you very soon."
+        text: "You can quit now."
       });
       return save;
     }

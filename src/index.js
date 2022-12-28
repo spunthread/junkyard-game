@@ -1,10 +1,16 @@
 import { createRoot } from "react-dom/client";
 import { SaveProvider } from "./SaveContext";
-import App from "./App";
+import Header from "./pages/header";
+import Place from "./pages/place";
+import Nav from "./pages/nav";
+import "./assets/css/index.css";
 
 const root = createRoot(document.getElementById("root"));
+
 root.render(
   <SaveProvider>
-    <App />
+    <Header />
+    <Place />
+    <Nav />
   </SaveProvider>
 );

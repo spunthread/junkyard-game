@@ -1,11 +1,12 @@
 import { useCallback, useState } from "react";
+import "./assets/css/alerts.css";
 
 export function useAlertAction() {
   const [list, setList] = useState([]);
 
   const addAlert = useCallback(
     (alert) => {
-      const id = setTimeout(() => delAlert(), 6e3);
+      const id = setTimeout(() => delAlert(), 6e6);
       const delAlert = () => clearTimeout(id) ?? setList((l) => l.filter((a) => a.id !== id));
       setList((l) => l.concat({ id, delAlert, ...alert }));
     },
@@ -17,21 +18,21 @@ export function useAlertAction() {
 
 function Alert({ type, title, text, delAlert }) {
   return (
-    <div className={`alert alert-${type}`} role="alert" onClick={delAlert}>
-      <h4 className="alert-title">{title}</h4>
+    <h4 className={`alert alert-${type}`} role="alert" onClick={delAlert}>
+      <div className="alert-title">{title}</div>
       <div className="alert-text">{text}</div>
-    </div>
+    </h4>
   );
 }
 
 export function AlertContainer({ alerts }) {
   return (
-    <div className="alerts">
-      <div className="alert-container">
+    <aside>
+      <section className="alert-container">
         {alerts.map((alert) => (
           <Alert key={alert.id} {...alert} />
         ))}
-      </div>
-    </div>
+      </section>
+    </aside>
   );
 }
