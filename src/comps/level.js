@@ -5,18 +5,12 @@ export default function Level() {
   const { level, points } = useSave();
 
   return (
-    <figure className="">
+    <figure className="stats-item">
       <img src={star} alt="level" />
-
-      <figcaption>
-        <p>
-          Level <strong>{level}</strong>
-        </p>
-
-        <p>
-          Points <strong>{points}</strong>
-        </p>
-      </figcaption>
+      <strong>
+        {level} : {points}
+      </strong>
+      <progress value={points} max={level * 1e3}></progress>
     </figure>
   );
 }

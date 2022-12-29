@@ -1,22 +1,16 @@
-import thunder from "../assets/images/thunder.png";
 import { useSave } from "../SaveContext";
+import thunder from "../assets/images/thunder.png";
 
 export default function Energy() {
   const { energy, level, energytime } = useSave();
+
   return (
-    <figure className="header-figure">
+    <figure className="stats-item">
       <img src={thunder} alt="energy" />
-
-      <figcaption>
-        <p>
-          Energy{" "}
-          <strong>
-            {energy}/{level * 1e2}
-          </strong>
-        </p>
-
-        <progress value={30 - energytime} max={30}></progress>
-      </figcaption>
+      <strong>
+        {energy} / {level * 1e2}
+      </strong>
+      <progress value={30 - energytime} max={30}></progress>
     </figure>
   );
 }

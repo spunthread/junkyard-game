@@ -1,3 +1,4 @@
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { SaveProvider } from "./SaveContext";
 import Header from "./pages/header";
@@ -8,9 +9,11 @@ import "./assets/css/index.css";
 const root = createRoot(document.getElementById("root"));
 
 root.render(
-  <SaveProvider>
-    <Header />
-    <Place />
-    <Nav />
-  </SaveProvider>
+  <StrictMode>
+    <SaveProvider>
+      <Header />
+      <Place />
+      <Nav />
+    </SaveProvider>
+  </StrictMode>
 );

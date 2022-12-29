@@ -5,7 +5,7 @@ export default function Savenow() {
   const dispatch = useSaveDispatch();
 
   return (
-    <aside>
+    <aside className="stats-item">
       <button onClick={() => dispatch({ type: "SAVEGAME", alert })}>Save</button>
     </aside>
   );

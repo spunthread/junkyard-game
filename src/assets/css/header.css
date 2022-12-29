@@ -1,4 +1,13 @@
-.upper {
+.stats {
   display: grid;
-  grid-template-columns: repeat(3, minmax(4rem, 1fr));
+  align-items: stretch;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.stats-item {
+  display: grid;
+  place-items: center;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: auto;
 }

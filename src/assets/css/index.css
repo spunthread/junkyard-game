@@ -24,7 +24,21 @@ body {
 #root {
   height: 100%;
   display: grid;
+  row-gap: 0.5rem;
+  grid-template-rows: 1fr 3.5fr 0.5fr 0fr;
   grid-template-columns: auto;
-  grid-template-rows: 15% auto 10% 0;
-  row-gap: 1rem;
+}
+
+figure {
+  margin: 0;
+}
+
+img {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: scale-down;
+}
+
+progress {
+  width: 80%;
 }
