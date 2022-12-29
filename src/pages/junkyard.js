@@ -14,40 +14,29 @@ export default function Junkyard() {
       </aside>
       <article className="place-down junkyard">
         <div className="junkyard-left">
-          <p>
-            Parking:{" "}
-            <strong>
-              {parking.size}/{parkingmax}
-            </strong>
-          </p>
-          <p>
-            Garage:{" "}
-            <strong>
-              {garage.size}/{garagemax}
-            </strong>
-          </p>
-          <p>
-            Storage:{" "}
-            <strong>
-              {storage.size}/{storagemax}
-            </strong>
-          </p>
+          <span className="rounded">
+            Parking: {parking.size}/{parkingmax}
+          </span>
+          <span className="rounded">
+            Garage: {garage.size}/{garagemax}
+          </span>
+          <span className="rounded">
+            Storage: {storage.size}/{storagemax}
+          </span>
         </div>
         <div className="junkyard-right">
           {Boolean(junkyard) ? (
-            <figure className="junkyard-figure">
+            <figure className="first-child">
               <img src={junkyard.imgsrc} alt={junkyard.name} />
               <figcaption>{junkyard.name}</figcaption>
-              <figcaption>
-                <strong>${junkyard.price.toFixed(2)}</strong>
-              </figcaption>
-              <figcaption className="junkyard-controls">
+              <strong>{junkyard.price.toFixed(2)}</strong>
+              <span className="controls">
                 <button onClick={() => dispatch({ type: "SKIPVEHICLE", alert })}>Skip</button>
                 <button onClick={() => dispatch({ type: "BUYVEHICLE", alert })}>Buy</button>
-              </figcaption>
+              </span>
             </figure>
           ) : (
-            <h3>Next Please ...</h3>
+            <h3 className="first-child">Next Please ...</h3>
           )}
           <h3>Timer: {yardtime} sec</h3>
         </div>
