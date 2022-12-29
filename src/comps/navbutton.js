@@ -5,7 +5,7 @@ export default function Navbutton({ toPlace, children }) {
   const dispatch = useSaveDispatch();
 
   return (
-    <div>
+    <div className="navs-item">
       <button
         onClick={() => dispatch({ type: "CHANGEPLACE", place: toPlace })}
         disabled={place === toPlace}>

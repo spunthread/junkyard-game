@@ -6,27 +6,26 @@ export default function Parking() {
   const alert = useAlert();
 
   return (
-    <section>
-      <aside>
+    <section className="place">
+      <aside className="place-top">
         <div>
-          <p>Cars: {parking.size}</p>
-          <p>Space {parkingmax}</p>
+          {parking.size} / {parkingmax}
         </div>
         <h2>Parking</h2>
-        <div>
-          <strong>${parkingmax * 1e3}</strong>
+        <div className="">
+          <strong>{parkingmax * 1e3}</strong>
           <button onClick={() => dispatch({ type: "EXPANDPARKING", alert })}>Expand</button>
         </div>
       </aside>
-      <article>
+      <article className="place-down">
         {parking.size === 0 ? (
-          <p>No Vehicles in Parking</p>
+          <span className="place-down-span">No Vehicles in Parking</span>
         ) : (
           Array.from(parking.values()).map((pv) => (
             <div key={pv.id}>
               <figure>
                 <img src={pv.imgsrc} alt={pv.name} />
-                <figcaption>ϟ{pv.parking}</figcaption>
+                <figcaption>{pv.parking}</figcaption>
                 <button onClick={() => dispatch({ type: "MOVEVEHICLE", vid: pv.id, alert })}>
                   Move
                 </button>

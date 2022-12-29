@@ -1,5 +1,4 @@
 import { useSave } from "../SaveContext";
-import dollar from "../assets/images/dollar.png";
 import "../assets/css/money.css";
 
 export default function Money() {
@@ -7,7 +6,7 @@ export default function Money() {
 
   return (
     <figure className="stats-item">
-      <img src={dollar} alt="money" />
+      <img src="/res/Dollar0.png" alt="Money" />
       <strong className="money-value">{money.toFixed(2)}</strong>
     </figure>
   );

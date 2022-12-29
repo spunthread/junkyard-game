@@ -6,8 +6,11 @@ export function useAlertAction() {
 
   const addAlert = useCallback(
     (alert) => {
-      const id = setTimeout(() => delAlert(), 6e3);
-      const delAlert = () => clearTimeout(id) ?? setList((l) => l.filter((a) => a.id !== id));
+      const id = setTimeout(() => delAlert(), 6e6);
+      const delAlert = () => {
+        clearTimeout(id);
+        setList((l) => l.filter((a) => a.id !== id));
+      };
       setList((l) => l.concat({ id, delAlert, ...alert }));
     },
     [setList]

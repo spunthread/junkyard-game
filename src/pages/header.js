@@ -9,7 +9,6 @@ export default function Header() {
       <Money />
       <Level />
       <Energy />
-      {/* <Savenow /> */}
     </header>
   );
 }

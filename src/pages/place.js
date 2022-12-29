@@ -4,6 +4,7 @@ import Parking from "./parking";
 import Garage from "./garage";
 import Storage from "./storage";
 import Market from "./market";
+import "../assets/css/place.css";
 
 export default function Place() {
   const { place } = useSave();

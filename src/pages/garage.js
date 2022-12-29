@@ -6,21 +6,20 @@ export default function Garage() {
   const alert = useAlert();
 
   return (
-    <section>
-      <aside>
+    <section className="place">
+      <aside className="place-top">
         <div>
-          <p>Cars: {garage.size}</p>
-          <p>Space {garagemax}</p>
+          {garage.size} / {garagemax}
         </div>
         <h2>Garage</h2>
-        <div>
-          <strong>${garagemax * 2e3}</strong>
+        <div className="">
+          <strong>{garagemax * 2e3}</strong>
           <button onClick={() => dispatch({ type: "EXPANDGARAGE", alert })}>Expand</button>
         </div>
       </aside>
-      <article>
+      <article className="place-down">
         {garage.size === 0 ? (
-          <p>No Vehicles in Garage</p>
+          <span className="place-down-span">No Vehicles in Parking</span>
         ) : (
           Array.from(garage.values()).map((gv) => (
             <div key={gv.id}>
@@ -30,14 +29,14 @@ export default function Garage() {
               </figure>
               {gv.stage === -1 ? (
                 <div>
-                  <p>ϟ{gv.garage}</p>
+                  <p>{gv.garage}</p>
                   <button onClick={() => dispatch({ type: "WORKVEHICLE", vid: gv.id, alert })}>
                     Start
                   </button>
                 </div>
               ) : gv.stage === gv.parts.length ? (
                 <div>
-                  <p>ϟ{gv.storage}</p>
+                  <p>{gv.storage}</p>
                   <button onClick={() => dispatch({ type: "STOREVEHICLE", vid: gv.id, alert })}>
                     Store
                   </button>
@@ -45,12 +44,12 @@ export default function Garage() {
               ) : (
                 <>
                   <figure>
-                    <img alt="." />
+                    <img src={`/res/part${gv.stage}.png`} alt={gv.parts[gv.stage].name} />
                     <figcaption>{gv.parts[gv.stage].name}</figcaption>
                   </figure>
                   <div>
                     <p>
-                      <strong>{gv.time}</strong> -{" "}
+                      <strong>{gv.time}</strong>-
                       <strong>{gv.time - gv.parts[gv.stage].time}</strong>
                     </p>
                     <progress

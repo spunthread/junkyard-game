@@ -6,21 +6,20 @@ export default function Storage() {
   const alert = useAlert();
 
   return (
-    <section>
-      <aside>
+    <section className="place">
+      <aside className="place-top">
         <div>
-          <p>Cars: {storage.size}</p>
-          <p>Space {storagemax}</p>
+          {storage.size} / {storagemax}
         </div>
         <h2>Storage</h2>
-        <div>
-          <strong>${storagemax * 15e2}</strong>
+        <div className="">
+          <strong>{storagemax * 15e2}</strong>
           <button onClick={() => dispatch({ type: "EXPANDSTORAGE", alert })}>Expand</button>
         </div>
       </aside>
-      <article>
+      <article className="place-down">
         {storage.size === 0 ? (
-          <p>No Vehicles in Storage</p>
+          <span className="place-down-span">No Vehicles in Parking</span>
         ) : (
           Array.from(storage.values()).map((sv) => (
             <div key={sv.id}>

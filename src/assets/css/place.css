@@ -1,0 +1,26 @@
+.place {
+  display: grid;
+  row-gap: 2%;
+  grid-template-rows: 18% 80%;
+  grid-template-columns: auto;
+}
+
+.place-down {
+  overflow-y: auto;
+}
+
+.place-top {
+  display: grid;
+  place-items: stretch;
+  grid-template-rows: 100%;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.place-top > * {
+  display: grid;
+  place-items: center;
+}
+
+.place-top-span {
+  grid-column: span 3;
+}

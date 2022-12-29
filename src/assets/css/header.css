@@ -1,7 +1,7 @@
 .stats {
   display: grid;
   align-items: stretch;
-  grid-template-rows: auto;
+  grid-template-rows: 100%;
   grid-template-columns: repeat(3, 1fr);
 }
 

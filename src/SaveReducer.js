@@ -320,20 +320,6 @@ export default function useSaveReducer() {
 
         return { ...save };
       }
-      // case "SAVEGAME": {
-      //   localStorage.setItem(
-      //     "save",
-      //     JSON.stringify(save, (_, value) =>
-      //       value instanceof Map ? { dataType: "Map", value: Array.from(value.entries()) } : value
-      //     )
-      //   );
-      //   action.alert({
-      //     type: "success",
-      //     title: "Game Saved !",
-      //     text: "You can quit now."
-      //   });
-      //   return save;
-      // }
       default: {
         throw Error("Unknown action type: " + action.type);
       }

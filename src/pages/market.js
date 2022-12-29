@@ -20,29 +20,29 @@ export default function Market() {
   );
 
   return (
-    <section>
-      <aside>
-        <figure>
+    <section className="place">
+      <aside className="place-top">
+        <figure className="">
           <img src={market.imgsrc} alt={market.name} />
           <figcaption>{market.name}</figcaption>
         </figure>
         <h2>Market</h2>
-        <div>
-          <p>
-            Buy: <strong>${market.price.toFixed(2)}</strong>
-          </p>
-          <p>
-            Sell: <strong>${total.toFixed(2)}</strong>
-          </p>
-          <p>
-            Margin: <strong>${(total - market.price).toFixed(2)}</strong>
-          </p>
+        <div className="">
+          <span>
+            B:<strong>{market.price.toFixed(2)}</strong>
+          </span>
+          <span>
+            S:<strong>{total.toFixed(2)}</strong>
+          </span>
+          <span>
+            C:<strong>{(total - market.price).toFixed(2)}</strong>
+          </span>
         </div>
       </aside>
-      <article>
+      <article className="place-down">
         {market.parts.map((mp, ix) => (
           <figure key={mp.name}>
-            <img alt="." />
+            <img src={`/res/part${ix}.png`} alt={mp.name} />
             <figcaption>{mp.name}</figcaption>
             <figcaption>
               <strong>${prices[ix].toFixed(2)}</strong>

@@ -1,12 +1,11 @@
 import { useSave } from "../SaveContext";
-import thunder from "../assets/images/thunder.png";
 
 export default function Energy() {
   const { energy, level, energytime } = useSave();
 
   return (
     <figure className="stats-item">
-      <img src={thunder} alt="energy" />
+      <img src="/res/Energy0.png" alt="Energy" />
       <strong>
         {energy} / {level * 1e2}
       </strong>

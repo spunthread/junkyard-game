@@ -1,4 +1,5 @@
 import { useAlert, useSave, useSaveDispatch } from "../SaveContext";
+import "../assets/css/junkyard.css";
 
 export default function Junkyard() {
   const { junkyard, yardtime, garage, garagemax, parking, parkingmax, storage, storagemax } =
@@ -7,11 +8,11 @@ export default function Junkyard() {
   const alert = useAlert();
 
   return (
-    <section>
-      <aside>
-        <h2>Junkyard</h2>
+    <section className="place">
+      <aside className="place-top">
+        <h2 className="place-top-span">Junkyard</h2>
       </aside>
-      <article className="junkyard-article">
+      <article className="place-down junkyard">
         <div className="junkyard-left">
           <p>
             Parking:{" "}
