@@ -8,6 +8,5 @@
 .stats-item {
   display: grid;
   place-items: center;
-  grid-template-rows: repeat(3, auto);
-  grid-template-columns: auto;
+  grid-template-rows: 70% 15% 15%;
 }
