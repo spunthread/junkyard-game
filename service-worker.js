@@ -3,7 +3,7 @@
 const CACHE_NAME = "cache-v0";
 
 const FILES_TO_CACHE = [
-  "/junkyard-game",
+  "/junkyard-game/",
   "/junkyard-game/main.c57bf3c4.js",
   "/junkyard-game/main.a0a80036.css",
   "/junkyard-game/favicon.ico",
@@ -47,41 +47,22 @@ const FILES_TO_CACHE = [
 ];
 
 self.addEventListener("install", (evt) => {
-  console.log("[ServiceWorker] Install");
-
-  evt.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log("[ServiceWorker] Pre-caching offline pages");
-      return cache.addAll(FILES_TO_CACHE);
-    })
-  );
-
+  evt.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(FILES_TO_CACHE)));
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (evt) => {
-  console.log("[ServiceWorker] Activate");
-
   evt.waitUntil(
-    caches.keys().then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (key !== CACHE_NAME) {
-            console.log("[ServiceWorker] Removing old cache", key);
-            return caches.delete(key);
-          }
-        })
-      );
-    })
+    caches
+      .keys()
+      .then((keyList) =>
+        Promise.all(keyList.map((key) => (key !== CACHE_NAME ? caches.delete(key) : undefined)))
+      )
   );
-
   self.clients.claim();
 });
 
 self.addEventListener("fetch", (evt) => {
-  console.log("[ServiceWorker] Fetch", evt.request);
-
-  if (evt.request.method !== "GET") return;
-
-  evt.respondWith(caches.match(evt.request).then((res) => res ?? fetch(evt.request)));
+  if (evt.request.method === "GET")
+    evt.respondWith(caches.match(evt.request).then((res) => res ?? fetch(evt.request)));
 });
