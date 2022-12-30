@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/junkyard-game/static/css/main.a0a80036.css",
+    "main.js": "/junkyard-game/static/js/main.8293c59c.js",
+    "index.html": "/junkyard-game/index.html",
+    "main.a0a80036.css.map": "/junkyard-game/static/css/main.a0a80036.css.map",
+    "main.8293c59c.js.map": "/junkyard-game/static/js/main.8293c59c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a0a80036.css",
+    "static/js/main.8293c59c.js"
+  ]
+}
