@@ -1,4 +1,5 @@
 import { useAlert, useSave, useSaveDispatch } from "../SaveContext";
+import "../assets/css/garage.css";
 
 export default function Garage() {
   const { garage, garagemax } = useSave();
@@ -12,50 +13,52 @@ export default function Garage() {
           {garage.size} / {garagemax}
         </div>
         <h2>Garage</h2>
-        <div className="">
-          <strong>{garagemax * 2e3}</strong>
+        <div>
+          <strong className="text-success">{garagemax * 2e3}</strong>
           <button onClick={() => dispatch({ type: "EXPANDGARAGE", alert })}>Expand</button>
         </div>
       </aside>
-      <article className="place-down">
+      <article className="place-down garage">
         {garage.size === 0 ? (
-          <span className="place-down-span">No Vehicles in Parking</span>
+          <strong className="place-down-span">Garage is Empty</strong>
         ) : (
           Array.from(garage.values()).map((gv) => (
-            <div key={gv.id}>
-              <figure>
-                <img src={gv.imgsrc} alt={gv.name} />
-                <figcaption>{gv.name}</figcaption>
+            <div className="garage-item" key={gv.id}>
+              <figure className="garage-figone">
+                <img src={`/res/${gv.name}.png`} alt={gv.name} />
+                <span>{gv.name}</span>
               </figure>
               {gv.stage === -1 ? (
-                <div>
-                  <p>{gv.garage}</p>
+                <figcaption className="garage-figthree">
+                  <strong className="text-warning">{gv.garage}</strong>
                   <button onClick={() => dispatch({ type: "WORKVEHICLE", vid: gv.id, alert })}>
-                    Start
+                    Work
                   </button>
-                </div>
+                </figcaption>
               ) : gv.stage === gv.parts.length ? (
-                <div>
-                  <p>{gv.storage}</p>
+                <figcaption className="garage-figthree">
+                  <strong className="text-warning">{gv.storage}</strong>
                   <button onClick={() => dispatch({ type: "STOREVEHICLE", vid: gv.id, alert })}>
                     Store
                   </button>
-                </div>
+                </figcaption>
               ) : (
                 <>
-                  <figure>
-                    <img src={`/res/part${gv.stage}.png`} alt={gv.parts[gv.stage].name} />
-                    <figcaption>{gv.parts[gv.stage].name}</figcaption>
+                  <figure className="garage-figtwo">
+                    <img
+                      src={`/res/${gv.parts[gv.stage].name}.png`}
+                      alt={gv.parts[gv.stage].name}
+                    />
+                    <span>{gv.parts[gv.stage].name}</span>
                   </figure>
-                  <div>
-                    <p>
-                      <strong>{gv.time}</strong>-
-                      <strong>{gv.time - gv.parts[gv.stage].time}</strong>
-                    </p>
+                  <figcaption className="garage-figthree">
+                    <strong>
+                      {gv.time} - {gv.time - gv.parts[gv.stage].time}
+                    </strong>
                     <progress
                       max={gv.time}
                       value={gv.time - gv.parts[gv.stage].time}></progress>
-                  </div>
+                  </figcaption>
                 </>
               )}
             </div>

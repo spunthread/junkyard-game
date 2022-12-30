@@ -27,9 +27,9 @@ export default function Junkyard() {
         <div className="junkyard-right">
           {Boolean(junkyard) ? (
             <figure className="first-child">
-              <img src={junkyard.imgsrc} alt={junkyard.name} />
+              <img src={`/res/${junkyard.name}.png`} alt={junkyard.name} />
               <figcaption>{junkyard.name}</figcaption>
-              <strong>{junkyard.price.toFixed(2)}</strong>
+              <strong className="text-success">{junkyard.price.toFixed(2)}</strong>
               <span className="controls">
                 <button onClick={() => dispatch({ type: "SKIPVEHICLE", alert })}>Skip</button>
                 <button onClick={() => dispatch({ type: "BUYVEHICLE", alert })}>Buy</button>

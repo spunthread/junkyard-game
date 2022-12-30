@@ -1,5 +1,4 @@
 .junkyard {
-  display: grid;
   place-items: stretch;
   grid-template-rows: 100%;
   grid-template-columns: repeat(2, 1fr);

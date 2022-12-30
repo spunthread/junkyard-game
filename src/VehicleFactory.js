@@ -1,12 +1,11 @@
 export default class Vehicle {
   constructor(lvl = 1) {
+    this.level = lvl;
+    this.id = Date.now().toString(36);
     const vconf = Vehicle.config.get(Math.ceil(Math.random() * lvl))[
       Math.floor(Math.random() * 2)
     ];
-    this.level = lvl;
-    this.id = Date.now().toString(36);
     this.name = vconf.name;
-    this.imgsrc = vconf.imgsrc;
     this.price =
       Math.round(
         (Math.random() * (vconf.price[1] - vconf.price[0]) + vconf.price[0] + Number.EPSILON) *
@@ -86,8 +85,7 @@ export default class Vehicle {
       1,
       [
         {
-          name: "Vehicle 1-1",
-          imgsrc: "/res/V1-1.png",
+          name: "Vehicle1-1",
           // minPrice, maxPrice
           // mean price 100
           price: [50, 150],
@@ -102,8 +100,7 @@ export default class Vehicle {
           ratio: [0.01, 0.03, 0.03, 0.05, 0.09, 0.1, 0.14, 0.17, 0.17, 0.21]
         },
         {
-          name: "Vehicle 1-2",
-          imgsrc: "/res/V1-2.png",
+          name: "Vehicle1-2",
           // mean price 100
           price: [75, 125],
           // total energy 30
@@ -118,8 +115,7 @@ export default class Vehicle {
       2,
       [
         {
-          name: "Vehicle 2-1",
-          imgsrc: "/res/V2-1.png",
+          name: "Vehicle2-1",
           // mean price 200
           price: [100, 300],
           // total energy 40
@@ -129,8 +125,7 @@ export default class Vehicle {
           ratio: [0.01, 0.04, 0.05, 0.06, 0.06, 0.11, 0.13, 0.15, 0.16, 0.23]
         },
         {
-          name: "Vehicle 2-2",
-          imgsrc: "/res/V2-2.png",
+          name: "Vehicle2-2",
           // mean price 200
           price: [150, 250],
           // total energy 50
@@ -145,8 +140,7 @@ export default class Vehicle {
       3,
       [
         {
-          name: "Vehicle 3-1",
-          imgsrc: "/res/V3-1.png",
+          name: "Vehicle3-1",
           // mean price 300
           price: [150, 450],
           // total energy 60
@@ -156,8 +150,7 @@ export default class Vehicle {
           ratio: [0.01, 0.01, 0.02, 0.08, 0.08, 0.11, 0.12, 0.13, 0.17, 0.27]
         },
         {
-          name: "Vehicle 3-2",
-          imgsrc: "/res/V3-2.png",
+          name: "Vehicle3-2",
           // mean price 300
           price: [200, 400],
           // total energy 75

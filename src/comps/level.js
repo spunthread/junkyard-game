@@ -6,7 +6,7 @@ export default function Level() {
   return (
     <figure className="stats-item">
       <img src="/res/Star.png" alt="Level" />
-      <strong>
+      <strong className="text-info">
         {level} : {points}
       </strong>
       <progress value={points} max={level * 1e3}></progress>

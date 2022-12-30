@@ -25,7 +25,7 @@ export default function useSaveReducer() {
 
   const initialSave = storage
     ? JSON.parse(storage, (_, value) =>
-        typeof value === "object" && value !== null && value.dataType === "Map"
+        typeof value === "object" && value !== null && value.dataType === "MAP"
           ? new Map(value.value)
           : value
       )

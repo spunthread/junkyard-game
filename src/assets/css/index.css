@@ -57,3 +57,19 @@ h2,
 h3 {
   margin: 0;
 }
+
+.text-info {
+  color: #3498db;
+}
+
+.text-success {
+  color: #25d42a;
+}
+
+.text-warning {
+  color: #e6ba0d;
+}
+
+.text-danger {
+  color: #e24332;
+}

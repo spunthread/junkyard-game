@@ -32,7 +32,7 @@ export function SaveProvider({ children }) {
       localStorage.setItem(
         "save",
         JSON.stringify(save, (_, value) =>
-          value instanceof Map ? { dataType: "Map", value: Array.from(value.entries()) } : value
+          value instanceof Map ? { dataType: "MAP", value: Array.from(value.entries()) } : value
         )
       );
     window.addEventListener("beforeunload", saveGame, { passive: true, once: true });

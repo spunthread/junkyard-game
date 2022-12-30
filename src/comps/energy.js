@@ -6,7 +6,7 @@ export default function Energy() {
   return (
     <figure className="stats-item">
       <img src="/res/Energy0.png" alt="Energy" />
-      <strong>
+      <strong className="text-warning">
         {energy} / {level * 1e2}
       </strong>
       <progress value={30 - energytime} max={30}></progress>
