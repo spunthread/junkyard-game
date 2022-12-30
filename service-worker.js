@@ -6,7 +6,7 @@ const FILES_TO_CACHE = [
   "/junkyard-game",
   "/junkyard-game/main.c57bf3c4.js",
   "/junkyard-game/main.a0a80036.css",
-  "/junkyard-game/favicon.png",
+  "/junkyard-game/favicon.ico",
   "/junkyard-game/index.html",
   "/junkyard-game/logo192.png",
   "/junkyard-game/logo512.png",
