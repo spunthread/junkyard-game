@@ -25,7 +25,7 @@ export default function Garage() {
           Array.from(garage.values()).map((gv) => (
             <div className="garage-item" key={gv.id}>
               <figure className="garage-figone">
-                <img src={`/res/${gv.name}.png`} alt={gv.name} />
+                <img src={`res/${gv.name}.png`} alt={gv.name} />
                 <span>{gv.name}</span>
               </figure>
               {gv.stage === -1 ? (
@@ -46,7 +46,7 @@ export default function Garage() {
                 <>
                   <figure className="garage-figtwo">
                     <img
-                      src={`/res/${gv.parts[gv.stage].name}.png`}
+                      src={`res/${gv.parts[gv.stage].name}.png`}
                       alt={gv.parts[gv.stage].name}
                     />
                     <span>{gv.parts[gv.stage].name}</span>

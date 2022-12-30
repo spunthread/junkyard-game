@@ -24,7 +24,7 @@ export default function Parking() {
         ) : (
           Array.from(parking.values()).map((pv) => (
             <figure key={pv.id}>
-              <img src={`/res/${pv.name}.png`} alt={pv.name} />
+              <img src={`res/${pv.name}.png`} alt={pv.name} />
               <figcaption className="parking controls">
                 <strong className="text-warning">{pv.parking}</strong>
                 <button onClick={() => dispatch({ type: "MOVEVEHICLE", vid: pv.id, alert })}>

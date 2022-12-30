@@ -23,7 +23,7 @@ export default function Storage() {
         ) : (
           Array.from(storage.values()).map((sv) => (
             <figure key={sv.id}>
-              <img src={`/res/${sv.name}.png`} alt={sv.name} />
+              <img src={`res/${sv.name}.png`} alt={sv.name} />
               <button onClick={() => dispatch({ type: "SELLVEHICLE", vid: sv.id })}>
                 Sell
               </button>

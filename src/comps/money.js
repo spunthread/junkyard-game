@@ -6,7 +6,7 @@ export default function Money() {
 
   return (
     <figure className="stats-item">
-      <img src="/res/Dollar0.png" alt="Money" />
+      <img src="res/Dollar0.png" alt="Money" />
       <strong className="money-value text-success">{money.toFixed(2)}</strong>
     </figure>
   );

@@ -23,7 +23,7 @@ export default function Market() {
     <section className="place">
       <aside className="place-top">
         <figure className="place-start">
-          <img src={`/res/${market.name}.png`} alt={market.name} />
+          <img src={`res/${market.name}.png`} alt={market.name} />
           <figcaption>{market.name}</figcaption>
         </figure>
         <h2>Market</h2>
@@ -42,7 +42,7 @@ export default function Market() {
       <article className="place-down parking-storage">
         {market.parts.map((mp, ix) => (
           <figure key={mp.name}>
-            <img src={`/res/${mp.name}.png`} alt={mp.name} />
+            <img src={`res/${mp.name}.png`} alt={mp.name} />
             <figcaption>{mp.name}</figcaption>
             <strong className={mp.price > 0 ? "text-success" : ""}>
               {prices[ix].toFixed(2)}

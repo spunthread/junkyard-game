@@ -5,7 +5,7 @@ export default function Level() {
 
   return (
     <figure className="stats-item">
-      <img src="/res/Star0.png" alt="Level" />
+      <img src="res/Star0.png" alt="Level" />
       <strong className="text-info">
         {level} : {points}
       </strong>

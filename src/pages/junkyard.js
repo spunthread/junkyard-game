@@ -27,7 +27,7 @@ export default function Junkyard() {
         <div className="junkyard-right">
           {Boolean(junkyard) ? (
             <figure className="first-child">
-              <img src={`/res/${junkyard.name}.png`} alt={junkyard.name} />
+              <img src={`res/${junkyard.name}.png`} alt={junkyard.name} />
               <figcaption>{junkyard.name}</figcaption>
               <strong className="text-success">{junkyard.price.toFixed(2)}</strong>
               <span className="controls">
