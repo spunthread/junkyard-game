@@ -1,6 +1,6 @@
 {
   "short_name": "Junkyard Tycoon",
-  "name": "Junkyard Tycoon Game",
+  "name": "Junkyard Tycoon",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,6 +21,6 @@
   "start_url": ".",
   "display": "standalone",
   "display_override": ["fullscreen", "minimal-ui"],
-  "theme_color": "#000000",
-  "background_color": "#000000"
+  "theme_color": "#242424",
+  "background_color": "#242424"
 }
