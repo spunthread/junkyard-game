@@ -28,13 +28,16 @@ export function SaveProvider({ children }) {
   }, [alert, dispatch]);
 
   useEffect(() => {
-    const saveGame = () =>
+    const saveGame = (evt) => {
+      evt.preventDefault();
       localStorage.setItem(
         "save",
         JSON.stringify(save, (_, value) =>
           value instanceof Map ? { dataType: "MAP", value: Array.from(value.entries()) } : value
         )
       );
+      return (evt.returnValue = "See Ya Later ?");
+    };
     window.addEventListener("beforeunload", saveGame, { passive: true, once: true });
     return () => window.removeEventListener("beforeunload", saveGame);
   }, [save]);
