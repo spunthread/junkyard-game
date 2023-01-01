@@ -16,6 +16,16 @@ const FILES_TO_CACHE = [
   "/junkyard-game/res/Energy0.png",
   "/junkyard-game/res/Vehicle1-1.png",
   "/junkyard-game/res/Vehicle1-2.png",
+  "/junkyard-game/res/Battery.png",
+  "/junkyard-game/res/Fluids.png",
+  "/junkyard-game/res/Electronics.png",
+  "/junkyard-game/res/Rims.png",
+  "/junkyard-game/res/Brakes.png",
+  "/junkyard-game/res/Windows.png",
+  "/junkyard-game/res/Engine.png",
+  "/junkyard-game/res/Transmission.png",
+  "/junkyard-game/res/Drivetrain.png",
+  "/junkyard-game/res/Scrap.png",
   "/junkyard-game/res/Vehicle2-1.png",
   "/junkyard-game/res/Vehicle2-2.png",
   "/junkyard-game/res/Vehicle3-1.png",
@@ -33,17 +43,7 @@ const FILES_TO_CACHE = [
   "/junkyard-game/res/Vehicle9-1.png",
   "/junkyard-game/res/Vehicle9-2.png",
   "/junkyard-game/res/Vehicle10-1.png",
-  "/junkyard-game/res/Vehicle10-2.png",
-  "/junkyard-game/res/Battery.png",
-  "/junkyard-game/res/Fluids.png",
-  "/junkyard-game/res/Electronics.png",
-  "/junkyard-game/res/Rims.png",
-  "/junkyard-game/res/Brakes.png",
-  "/junkyard-game/res/Windows.png",
-  "/junkyard-game/res/Engine.png",
-  "/junkyard-game/res/Transmission.png",
-  "/junkyard-game/res/Drivetrain.png",
-  "/junkyard-game/res/Scrap.png"
+  "/junkyard-game/res/Vehicle10-2.png"
 ];
 
 self.addEventListener("install", (evt) => {
