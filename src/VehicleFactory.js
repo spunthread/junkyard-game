@@ -6,11 +6,7 @@ export default class Vehicle {
       Math.floor(Math.random() * 2)
     ];
     this.name = vconf.name;
-    this.price =
-      Math.round(
-        (Math.random() * (vconf.price[1] - vconf.price[0]) + vconf.price[0] + Number.EPSILON) *
-          100
-      ) / 100;
+    this.price = Math.random() * (vconf.price[1] - vconf.price[0]) + vconf.price[0];
     this.parking = vconf.energy[0];
     this.storage = vconf.energy[1];
     this.garage = vconf.energy[2];
