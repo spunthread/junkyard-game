@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Junkyard Tycoon",
+  "name": "Junkyard Tycoon",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "display_override": ["fullscreen", "minimal-ui"],
+  "theme_color": "#242424",
+  "background_color": "#242424"
 }

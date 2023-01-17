@@ -1,11 +1,19 @@
-import "./components/css/index.css";
-import React from "react";
-import ReactDOM from "react-dom";
-import Game from "./components/Game";
+// import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { SaveProvider } from "./SaveContext";
+import Header from "./pages/header";
+import Place from "./pages/place";
+import Nav from "./pages/nav";
+import "./assets/css/index.css";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Game />
-  </React.StrictMode>,
-  document.getElementById('root')
+const root = createRoot(document.getElementById("root"));
+
+root.render(
+  // <StrictMode>
+  <SaveProvider>
+    <Header />
+    <Place />
+    <Nav />
+  </SaveProvider>
+  // </StrictMode>
 );
