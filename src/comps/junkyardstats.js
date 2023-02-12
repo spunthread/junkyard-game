@@ -1,3 +1,4 @@
+import { useSave } from "../SaveContext";
 import PlaceStat from "./placestat";
 
 export default function JunkyardStats() {

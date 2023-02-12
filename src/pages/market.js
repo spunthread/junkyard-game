@@ -13,7 +13,7 @@ export default function Market() {
     () =>
       setPrices(
         market.parts.map((mp) =>
-          mp.price > 0 ? mp.price : market.price * mp.ratio * (0.5 + Math.random())
+          mp.price > 0 ? mp.price : market.price * mp.ratio * (Math.random() + Math.random())
         )
       ),
     [market.parts, market.price, market.stage]
