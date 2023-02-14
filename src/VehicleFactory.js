@@ -90,7 +90,7 @@ export default class Vehicle {
           energy: [5, 6, 9],
           // fluidsTime, batteryTime, rimsTime, brakesTime, windowsTime, scrapTime, electronicsTime, drivetrainTime, transmissionTime, engineTime
           // total time 60
-          time: [1, 2, 3, 3, 4, 5, 6, 6, 15, 15],
+          time: [1000, 2000, 3000, 3000, 4000, 5000, 6000, 6000, 15000, 15000],
           // fluidsRatio, brakesRatio, electronicsRatio, rimsRatio, windowsRatio, batteryRatio, scrapRatio, drivetrainRatio, transmissionRatio, engineRatio
           // total ratio 1 always
           ratio: [0.01, 0.03, 0.03, 0.05, 0.09, 0.1, 0.14, 0.17, 0.17, 0.21]
@@ -102,7 +102,7 @@ export default class Vehicle {
           // total energy 30
           energy: [6, 10, 14],
           // total time 90
-          time: [1, 4, 7, 8, 9, 9, 10, 12, 13, 17],
+          time: [1000, 4000, 7000, 8000, 9000, 9000, 10000, 12000, 13000, 17000],
           ratio: [0.01, 0.01, 0.02, 0.05, 0.07, 0.1, 0.1, 0.14, 0.15, 0.35]
         }
       ]
@@ -117,7 +117,7 @@ export default class Vehicle {
           // total energy 40
           energy: [6, 11, 23],
           // total time 120
-          time: [1, 1, 4, 4, 10, 13, 16, 18, 20, 33],
+          time: [1000, 1000, 4000, 4000, 10000, 13000, 16000, 18000, 20000, 33000],
           ratio: [0.01, 0.04, 0.05, 0.06, 0.06, 0.11, 0.13, 0.15, 0.16, 0.23]
         },
         {
@@ -127,7 +127,7 @@ export default class Vehicle {
           // total energy 50
           energy: [6, 16, 28],
           // total time 150
-          time: [2, 2, 3, 6, 10, 12, 18, 24, 36, 37],
+          time: [2000, 2000, 3000, 6000, 10000, 12000, 18000, 24000, 36000, 37000],
           ratio: [0.01, 0.01, 0.02, 0.02, 0.02, 0.06, 0.1, 0.24, 0.24, 0.28]
         }
       ]
@@ -142,7 +142,7 @@ export default class Vehicle {
           // total energy 60
           energy: [8, 20, 32],
           // total time 180
-          time: [3, 4, 4, 11, 14, 23, 25, 28, 29, 39],
+          time: [3000, 4000, 4000, 11000, 14000, 23000, 25000, 28000, 29000, 39000],
           ratio: [0.01, 0.01, 0.02, 0.08, 0.08, 0.11, 0.12, 0.13, 0.17, 0.27]
         },
         {
@@ -152,7 +152,7 @@ export default class Vehicle {
           // total energy 75
           energy: [8, 27, 40],
           // total time 210
-          time: [2, 8, 11, 14, 18, 20, 23, 24, 41, 49],
+          time: [2000, 8000, 11000, 14000, 18000, 20000, 23000, 24000, 41000, 49000],
           ratio: [0.02, 0.02, 0.04, 0.04, 0.07, 0.08, 0.09, 0.15, 0.21, 0.28]
         }
       ]

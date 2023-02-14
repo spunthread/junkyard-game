@@ -9,7 +9,7 @@ export default function Energy() {
       <strong className="text-warning">
         {energy} / {level * 1e2}
       </strong>
-      <progress value={30 - energytime} max={30}></progress>
+      <progress value={30000 - energytime} max={30000}></progress>
     </figure>
   );
 }

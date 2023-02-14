@@ -53,7 +53,7 @@ export default function Garage() {
                   </figure>
                   <figcaption className="garage-figthree">
                     <strong>
-                      {gv.time} - {gv.time - gv.parts[gv.stage].time}
+                      {gv.time - gv.parts[gv.stage].time} = {gv.time}
                     </strong>
                     <progress
                       max={gv.time}

@@ -23,23 +23,40 @@ export function SaveProvider({ children }) {
   const [save, dispatch] = useSaveReducer();
 
   useEffect(() => {
-    const iid = setInterval(() => dispatch({ type: "NEXTTICK", alert }), 1e3);
-    return () => clearInterval(iid);
+    // const callback = (timestamp) => {
+    //   if (start === 0 || timestamp - start >= 1000) {
+    //     start = timestamp;
+    //     dispatch({ type: "NEXTTICK", alert });
+    //   }
+    //   rid = window.requestAnimationFrame(callback);
+    // };
+    let from = 0;
+    const callback = (time) => {
+      if (from !== 0) {
+        dispatch({ type: "NEXTTICK", alert, tms: Math.round(time - from) });
+      }
+      from = time;
+      rid = window.requestAnimationFrame(callback);
+    };
+    let rid = window.requestAnimationFrame(callback);
+    return () => window.cancelAnimationFrame(rid);
   }, [alert, dispatch]);
 
   useEffect(() => {
-    const saveGame = (evt) => {
-      evt.preventDefault();
-      localStorage.setItem(
-        "save",
-        JSON.stringify(save, (_, value) =>
-          value instanceof Map ? { dataType: "MAP", value: Array.from(value.entries()) } : value
-        )
-      );
-      return (evt.returnValue = "See Ya Later ?");
+    const saveGame = () => {
+      if (document.visibilityState === "hidden") {
+        localStorage.setItem(
+          "save",
+          JSON.stringify(save, (_, value) =>
+            value instanceof Map
+              ? { dataType: "MAP", value: Array.from(value.entries()) }
+              : value
+          )
+        );
+      }
     };
-    window.addEventListener("beforeunload", saveGame, { passive: true, once: true });
-    return () => window.removeEventListener("beforeunload", saveGame);
+    document.addEventListener("visibilitychange", saveGame);
+    return () => document.removeEventListener("visibilitychange", saveGame);
   }, [save]);
 
   return (
