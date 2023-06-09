@@ -10,7 +10,7 @@
 
   function generatePartsPrice() {
     return vehicle.parts.map((part) =>
-      part.sellprice > 0 ? part.sellprice : vehicle.price * part.ratio * (0.5 + Math.random())
+      part.sellprice > 0 ? part.sellprice : part.ratio * (Math.random() + Math.random())
     );
   }
 
@@ -51,10 +51,10 @@
     </figure>
     <h2>Market</h2>
     <aside>
-      <p>B: <strong>{vehicle.price.toFixed(2)}</strong></p>
-      <p>S: <strong>{total.toFixed(2)}</strong></p>
+      <p>B:&nbsp;<strong>{vehicle.price.toFixed(2)}</strong></p>
+      <p>S:&nbsp;<strong>{total.toFixed(2)}</strong></p>
       <p class={`txt-${total - vehicle.price < 0 ? "d" : "s"}`}>
-        M: <strong>{(total - vehicle.price).toFixed(2)}</strong>
+        M:&nbsp;<strong>{(total - vehicle.price).toFixed(2)}</strong>
       </p>
     </aside>
   </div>

@@ -28,16 +28,16 @@ export default class Vehicle {
     this.parts[7].time = time[8];
     this.parts[8].time = time[7];
     this.parts[9].time = time[5];
-    this.parts[0].ratio = ratio[5];
-    this.parts[1].ratio = ratio[0];
-    this.parts[2].ratio = ratio[2];
-    this.parts[3].ratio = ratio[3];
-    this.parts[4].ratio = ratio[1];
-    this.parts[5].ratio = ratio[4];
-    this.parts[6].ratio = ratio[9];
-    this.parts[7].ratio = ratio[8];
-    this.parts[8].ratio = ratio[7];
-    this.parts[9].ratio = ratio[6];
+    this.parts[0].ratio = this.price * ratio[5];
+    this.parts[1].ratio = this.price * ratio[0];
+    this.parts[2].ratio = this.price * ratio[2];
+    this.parts[3].ratio = this.price * ratio[3];
+    this.parts[4].ratio = this.price * ratio[1];
+    this.parts[5].ratio = this.price * ratio[4];
+    this.parts[6].ratio = this.price * ratio[9];
+    this.parts[7].ratio = this.price * ratio[8];
+    this.parts[8].ratio = this.price * ratio[7];
+    this.parts[9].ratio = this.price * ratio[6];
   }
 
   static generateRandomIntegers(targetSum, numIntegers = 10) {
