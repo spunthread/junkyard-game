@@ -1,0 +1,122 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  height: 99vh;
+}
+
+#app {
+  margin: 0;
+  flex: 1 1 100%;
+  text-align: center;
+  display: grid;
+  grid-template-rows: 15% 80% 5%;
+  grid-template-columns: auto;
+}
+
+section.place {
+  display: grid;
+  grid-template-rows: 20% 80%;
+  grid-template-columns: 1fr;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+div.place-header {
+  display: grid;
+  place-items: center;
+  grid-template-rows: 100%;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+article.place-main {
+  overflow-y: auto;
+  display: grid;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: scale-down;
+}
+
+progress {
+  width: 100%;
+}
+
+h2 {
+  font-size: 1.3rem;
+  line-height: 1.1;
+}
+
+h3 {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+p,
+h2,
+h3,
+figure {
+  margin: 0;
+}
+
+.txt-i {
+  color: #3498db;
+}
+
+.txt-s {
+  color: #25d42a;
+}
+
+.txt-w {
+  color: #e6ba0d;
+}
+
+.txt-d {
+  color: #e24332;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
