@@ -9,14 +9,12 @@
 
     if (data.money < data.garagemax * 2e3) {
       setAlert("d", "You're Broke ! Not enough Money to expand Garage.", "");
-      // return console.log("You're Broke !");
       return;
     }
 
     data.money = data.money - data.garagemax * 2e3;
     data.garagemax = data.garagemax + 1;
     setAlert("s", `Garage Expanded ! Now Holds upto ${data.garagemax} Vehicles.`, "");
-    // console.log("Garage Expanded !");
 
     $save = data;
   }
@@ -28,7 +26,6 @@
 
     if (data.energy < vehicle.garageenergy) {
       setAlert("d", "You're Tired ! Not enough Energy to Overhaul Vehicle.", "");
-      // return console.log("You're Tired !");
       return;
     }
 
@@ -47,13 +44,11 @@
 
     if (data.energy < vehicle.storageenergy) {
       setAlert("d", "You're Tired ! Not enough Energy to Store Vehicle Parts.", "");
-      // return console.log("You're Tired !");
       return;
     }
 
     if (data.storagevehicles.size === data.storagemax) {
       setAlert("w", "Too Crammed ! Not enough Space in Storage.", "");
-      // return console.log("Too Crammed !");
       return;
     }
 
@@ -63,7 +58,6 @@
     data.garagevehicles.delete(id);
     data.storagevehicles.set(id, vehicle);
     setAlert("s", "Vehicle Stored ! Sell it's Parts in the Storage.", "S");
-    // console.log("Vehicle Stored !");
 
     $save = data;
   }

@@ -16,13 +16,11 @@
 
     if (data.money < data.junkyardvehicle.price) {
       setAlert("d", "You're Broke ! Not enough Money for Vehicle.", "");
-      // return console.log("You're Broke !");
       return;
     }
 
     if (data.parkingvehicles.size === data.parkingmax) {
       setAlert("w", "Too Crammed ! Not enough Space in Parking.", "");
-      // return console.log("Too Crammed !");
       return;
     }
 
@@ -33,7 +31,6 @@
     data.junkyardvehicle = null;
     data.yardtime = 60;
     setAlert("s", "Vehicle Bought ! Find it in the Parking.", "P");
-    // console.log("Vehicle Bought !");
 
     $save = data;
   }

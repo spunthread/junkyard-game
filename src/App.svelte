@@ -63,7 +63,6 @@
         if (data.junkyardvehicle === null) {
           data.junkyardvehicle = new Vehicle(data.level);
           data.yardtime = 30;
-          // console.log("New Vehicle !");
           setAlert("i", "New Vehicle ! Grabe it Before it's Gone.", "J");
         } else {
           data.junkyardvehicle = null;
@@ -83,7 +82,6 @@
               data.points =
                 (data.points + vehicle.level * vehicle.parts.length) % (data.level * 1e3);
               data.level = data.level + (data.points + vehicle.level >= data.level * 1e3);
-              // console.log("Vehicle Overhauled !");
               setAlert("i", "Vehicle Overhauled ! Store it's Parts for Selling.", "G");
             }
           } else {
@@ -93,9 +91,7 @@
       }
 
       if (data.storagevehicles.has(data.marketvehicleid)) {
-        const vehicle = data.storagevehicles.get(data.marketvehicleid);
         if (data.markettime === 0) {
-          vehicle.stage += 1;
           data.markettime = 3;
         } else {
           data.markettime -= 1;

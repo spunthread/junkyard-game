@@ -88,22 +88,31 @@ export default class Vehicle {
     ],
     [
       { name: "Celestial Blazer", energy: 80, time: 120 },
-      { name: "Quantum Streaker", energy: 100, time: 160 }
+      { name: "Solar Cyclone", energy: 100, time: 160 }
+    ],
+    [
+      { name: "Warp Runner", energy: 100, time: 150 },
+      { name: "Infinity Drifter", energy: 125, time: 200 }
+    ],
+    [
+      { name: "Stormbringer", energy: 120, time: 180 },
+      { name: "Hyperion Vanguard", energy: 150, time: 240 }
+    ],
+    [
+      { name: "Phoenix Jetstream", energy: 140, time: 210 },
+      { name: "Zenith Hauler", energy: 175, time: 280 }
+    ],
+    [
+      { name: "Mirage Navigator", energy: 160, time: 240 },
+      { name: "Luminary Express", energy: 200, time: 320 }
+    ],
+    [
+      { name: "Aero Phantom", energy: 180, time: 270 },
+      { name: "Solstice Voyager", energy: 225, time: 360 }
+    ],
+    [
+      { name: "Titan's Fury", energy: 200, time: 300 },
+      { name: "Chronos Explorer", energy: 250, time: 400 }
     ]
   ];
-
-  // Celestial Blazer
-  // Solar Cyclone
-  // Warp Runner
-  // Infinity Drifter
-  // Stormbringer
-  // Hyperion Vanguard
-  // Phoenix Jetstream
-  // Zenith Hauler
-  // Mirage Navigator
-  // Luminary Express
-  // Aero Phantom
-  // Solstice Voyager
-  // Titan's Fury
-  // Chronos Explorer
 }

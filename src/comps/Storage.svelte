@@ -11,14 +11,12 @@
 
     if (data.money < data.storagemax * 15e2) {
       setAlert("d", "You're Broke ! Not enough Money to expand Storage.", "");
-      // return console.log("You're Broke !");
       return;
     }
 
     data.money = data.money - data.storagemax * 15e2;
     data.storagemax = data.storagemax + 1;
     setAlert("s", `Storage Expanded ! Now Holds upto ${data.storagemax} Vehicle Parts.`, "");
-    // console.log("Storage Expanded !");
 
     $save = data;
   }

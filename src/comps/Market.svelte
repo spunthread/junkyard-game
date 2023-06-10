@@ -36,7 +36,6 @@
     if (vehicle.parts.every((part) => part.sellprice > 0)) {
       data.storagevehicles.delete(vehicle.id);
       setAlert("s", "All Vehicle Parts Sold ! Let's Sell some more.", "S");
-      // console.log("Vehicle Sold !");
     }
 
     $save = data;

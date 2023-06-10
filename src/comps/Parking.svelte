@@ -9,14 +9,12 @@
 
     if (data.money < data.parkingmax * 1e3) {
       setAlert("d", "You're Broke ! Not enough Money to expand Parking.", "");
-      // return console.log("You're Broke !");
       return;
     }
 
     data.money = data.money - data.parkingmax * 1e3;
     data.parkingmax = data.parkingmax + 1;
     setAlert("s", `Parking Expanded ! Now Holds upto ${data.parkingmax} Vehicles.`, "");
-    // console.log("Parking Expanded !");
 
     $save = data;
   }
@@ -28,13 +26,11 @@
 
     if (data.energy < vehicle.parkingenergy) {
       setAlert("d", "You're Tired ! Not enough Energy to Move Vehicle.", "");
-      // return console.log("You're Tired !");
       return;
     }
 
     if (data.garagevehicles.size === data.garagemax) {
       setAlert("w", "Too Crammed ! Not enough Space in Garage.", "");
-      // return console.log("Too Crammed !");
       return;
     }
 
@@ -44,7 +40,6 @@
     data.parkingvehicles.delete(id);
     data.garagevehicles.set(id, vehicle);
     setAlert("s", "Vehicle Moved ! Overhaul it in the Garage.", "G");
-    // console.log("Vehicle Moved !");
 
     $save = data;
   }
