@@ -22,6 +22,8 @@
     }
   }
 
+  let margin = 1.5;
+
   function sellPart(ix) {
     const data = $save;
 
@@ -45,7 +47,10 @@
 <section class="market-place">
   <div class="place-header">
     <figure>
-      <img src={`assets/vehicles/${vehicle.level}-${vehicle.sub}.png`} alt={vehicle.name} />
+      <img
+        src={`assets/vehicles/${vehicle.level}-${vehicle.sub}.png`}
+        alt={vehicle.name}
+      />
       <figcaption>{vehicle.name}</figcaption>
     </figure>
     <h2>Market</h2>
@@ -53,7 +58,19 @@
       <p>B:&nbsp;<strong>{vehicle.price.toFixed(2)}</strong></p>
       <p>S:&nbsp;<strong>{total.toFixed(2)}</strong></p>
       <p class={`txt-${total - vehicle.price < 0 ? "d" : "s"}`}>
-        M:&nbsp;<strong>{(total - vehicle.price).toFixed(2)}</strong>
+        R:&nbsp;<strong>{(total - vehicle.price).toFixed(2)}</strong>
+      </p>
+      <p>
+        <input
+          type="range"
+          min={1}
+          max={2}
+          step={0.1}
+          bind:value={margin}
+        />
+      </p>
+      <p>
+        M:&nbsp;<strong>{`${margin === 2 ? "1" : ""}${margin.toPrecision(3).substring(margin === 1 ? 3 : 2)}`}%</strong>
       </p>
     </aside>
   </div>
@@ -61,11 +78,18 @@
     {#each vehicle.parts as part, index (index)}
       <div>
         <figure>
-          <img src={`assets/parts/${index}.png`} alt={part.name} />
+          <img
+            src={`assets/parts/${index}.png`}
+            alt={part.name}
+          />
           <figcaption>{part.name}</figcaption>
         </figure>
         <aside>
-          <strong class:txt-s={part.sellprice > 0}>{partsPrice[index].toFixed(2)}</strong>
+          <strong
+            class={part.sellprice === 0 ? "" : partsPrice[index] < part.ratio * margin ? "txt-w" : "txt-i"}
+            class:txt-s={part.sellprice === 0 && partsPrice[index] >= part.ratio * margin}
+            >{partsPrice[index].toFixed(2)}</strong
+          >
           <br />
           {#if part.sellprice > 0}
             <button disabled>Sold</button>

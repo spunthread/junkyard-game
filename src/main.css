@@ -74,7 +74,7 @@ img {
   object-fit: scale-down;
 }
 
-progress {
+progress, input {
   width: 100%;
 }
 
