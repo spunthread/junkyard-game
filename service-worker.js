@@ -1,14 +1,17 @@
 ("use strict");
 
-const CACHE_NAME = "cache-v0";
+const CACHE_NAME = "cache-v1";
 
 const FILES_TO_CACHE = [
   "/junkyard-game/",
   "/junkyard-game/logo.svg",
   "/junkyard-game/manifest.json",
   "/junkyard-game/i-am-a-deceptive-cheater.html",
-  "/junkyard-game/assets/index-8a3e2b4d.css",
-  "/junkyard-game/assets/index-c934c71f.js",
+  "/junkyard-game/assets/index-26489b2f.js",
+  "/junkyard-game/assets/index-15d96c0e.css",
+  "/junkyard-game/assets/stats/0.png",
+  "/junkyard-game/assets/stats/1.png",
+  "/junkyard-game/assets/stats/2.png",
   "/junkyard-game/assets/parts/0.png",
   "/junkyard-game/assets/parts/1.png",
   "/junkyard-game/assets/parts/2.png",
@@ -19,9 +22,6 @@ const FILES_TO_CACHE = [
   "/junkyard-game/assets/parts/7.png",
   "/junkyard-game/assets/parts/8.png",
   "/junkyard-game/assets/parts/9.png",
-  "/junkyard-game/assets/stats/0.png",
-  "/junkyard-game/assets/stats/1.png",
-  "/junkyard-game/assets/stats/2.png",
   "/junkyard-game/assets/vehicles/1-0.png",
   "/junkyard-game/assets/vehicles/1-1.png",
   "/junkyard-game/assets/vehicles/2-0.png",
