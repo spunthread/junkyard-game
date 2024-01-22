@@ -131,7 +131,7 @@
   div {
     left: 0;
     right: 0;
-    bottom: 8%;
+    top: 4%;
     z-index: 99;
     display: flex;
     flex-flow: column nowrap;
@@ -142,13 +142,13 @@
 
   strong {
     background-color: var(--alert-color);
-    border-color: transparent;
-    border-radius: 0.4rem;
+    border: 0.4rem double #fff;
+    border-radius: 0.8rem;
     padding: 0.4rem 1rem;
     margin: 0.4rem auto;
     cursor: pointer;
     color: #fff;
-    max-width: 80%;
+    max-width: 70%;
   }
 
   .alert-i {
