@@ -76,12 +76,14 @@
         const { garagestage, garagetime, parts } = vehicle;
         if (garagestage > -1 && garagestage < parts.length) {
           if (parts[garagestage].time === garagetime) {
+            const currentlevel = data.level;
+            const nextstage = garagestage + 1;
+            const nextpoints = data.points + vehicle.level;
             vehicle.garagetime = 0;
-            vehicle.garagestage = garagestage + 1;
-            if (garagestage + 1 === parts.length) {
-              data.points =
-                (data.points + vehicle.level * vehicle.parts.length) % (data.level * 1e3);
-              data.level = data.level + (data.points + vehicle.level >= data.level * 1e3);
+            vehicle.garagestage = nextstage;
+            data.points = nextpoints % (currentlevel * 1e3);
+            data.level = currentlevel + (nextpoints >= currentlevel * 1e3);
+            if (nextstage === parts.length) {
               setAlert("i", "Vehicle Overhauled ! Store it's Parts for Selling.", "G");
             }
           } else {

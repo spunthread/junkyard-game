@@ -29,10 +29,12 @@
       return;
     }
 
+    const currentlevel = data.level;
+    const nextpoints = data.points + vehicle.level;
     vehicle.garagestage = 0;
     data.energy = data.energy - vehicle.garageenergy;
-    data.points = (data.points + vehicle.level) % (data.level * 1e3);
-    data.level = data.level + (data.points + vehicle.level >= data.level * 1e3);
+    data.points = nextpoints % (currentlevel * 1e3);
+    data.level = currentlevel + (nextpoints >= currentlevel * 1e3);
 
     $save = data;
   }
@@ -52,9 +54,11 @@
       return;
     }
 
+    const currentlevel = data.level;
+    const nextpoints = data.points + vehicle.level;
     data.energy = data.energy - vehicle.storageenergy;
-    data.points = (data.points + vehicle.level) % (data.level * 1e3);
-    data.level = data.level + (data.points + vehicle.level >= data.level * 1e3);
+    data.points = nextpoints % (currentlevel * 1e3);
+    data.level = currentlevel + (nextpoints >= currentlevel * 1e3);
     data.garagevehicles.delete(id);
     data.storagevehicles.set(id, vehicle);
     setAlert("s", "Vehicle Stored ! Sell it's Parts in the Storage.", "S");
@@ -77,7 +81,10 @@
     {#each [...$save.garagevehicles.values()] as vehicle (vehicle.id)}
       <div>
         <figure>
-          <img src={`assets/vehicles/${vehicle.level}-${vehicle.sub}.png`} alt={vehicle.name} />
+          <img
+            src={`assets/vehicles/${vehicle.level}-${vehicle.sub}.png`}
+            alt={vehicle.name}
+          />
           <figcaption>{vehicle.name}</figcaption>
         </figure>
         {#if vehicle.garagestage === -1}
@@ -100,7 +107,10 @@
           </figure>
           <aside>
             <p class="txt-i">{vehicle.garagetime} => {vehicle.parts[vehicle.garagestage].time}</p>
-            <progress max={vehicle.parts[vehicle.garagestage].time} value={vehicle.garagetime} />
+            <progress
+              max={vehicle.parts[vehicle.garagestage].time}
+              value={vehicle.garagetime}
+            />
           </aside>
         {/if}
       </div>

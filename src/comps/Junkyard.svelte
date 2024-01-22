@@ -24,10 +24,13 @@
       return;
     }
 
-    data.money = data.money - data.junkyardvehicle.price;
-    data.points = (data.points + data.junkyardvehicle.level) % (data.level * 1e3);
-    data.level = data.level + (data.points + data.junkyardvehicle.level >= data.level * 1e3);
-    data.parkingvehicles.set(data.junkyardvehicle.id, data.junkyardvehicle);
+    const vehicle = data.junkyardvehicle;
+    const currentlevel = data.level;
+    const nextpoints = data.points + vehicle.level;
+    data.money = data.money - vehicle.price;
+    data.points = nextpoints % (currentlevel * 1e3);
+    data.level = currentlevel + (nextpoints >= currentlevel * 1e3);
+    data.parkingvehicles.set(vehicle.id, vehicle);
     data.junkyardvehicle = null;
     data.yardtime = 60;
     setAlert("s", "Vehicle Bought ! Find it in the Parking.", "P");

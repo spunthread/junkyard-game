@@ -34,9 +34,11 @@
       return;
     }
 
+    const currentlevel = data.level;
+    const nextpoints = data.points + vehicle.level;
     data.energy = data.energy - vehicle.parkingenergy;
-    data.points = (data.points + vehicle.level) % (data.level * 1e3);
-    data.level = data.level + (data.points + vehicle.level >= data.level * 1e3);
+    data.points = nextpoints % (currentlevel * 1e3);
+    data.level = currentlevel + (nextpoints >= currentlevel * 1e3);
     data.parkingvehicles.delete(id);
     data.garagevehicles.set(id, vehicle);
     setAlert("s", "Vehicle Moved ! Overhaul it in the Garage.", "G");
@@ -59,7 +61,10 @@
     {#each [...$save.parkingvehicles.values()] as vehicle (vehicle.id)}
       <div>
         <figure>
-          <img src={`assets/vehicles/${vehicle.level}-${vehicle.sub}.png`} alt={vehicle.name} />
+          <img
+            src={`assets/vehicles/${vehicle.level}-${vehicle.sub}.png`}
+            alt={vehicle.name}
+          />
           <figcaption>{vehicle.name}</figcaption>
         </figure>
         <aside>

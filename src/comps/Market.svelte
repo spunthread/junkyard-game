@@ -31,9 +31,11 @@
 
     vehicle.parts[ix].sellprice = partSellPrice;
 
+    const currentlevel = data.level;
+    const nextpoints = data.points + vehicle.level;
     data.money = data.money + partSellPrice;
-    data.points = (data.points + vehicle.level) % (data.level * 1e3);
-    data.level = data.level + (data.points + vehicle.level >= data.level * 1e3);
+    data.points = nextpoints % (currentlevel * 1e3);
+    data.level = currentlevel + (nextpoints >= currentlevel * 1e3);
 
     if (vehicle.parts.every((part) => part.sellprice > 0)) {
       data.storagevehicles.delete(vehicle.id);
