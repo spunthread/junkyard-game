@@ -7,8 +7,8 @@ const FILES_TO_CACHE = [
   "/junkyard-game/logo.svg",
   "/junkyard-game/manifest.json",
   "/junkyard-game/i-am-a-deceptive-cheater.html",
-  "/junkyard-game/assets/index-26489b2f.js",
-  "/junkyard-game/assets/index-15d96c0e.css",
+  "/junkyard-game/assets/index-28682539.js",
+  "/junkyard-game/assets/index-445f2335.css",
   "/junkyard-game/assets/stats/0.png",
   "/junkyard-game/assets/stats/1.png",
   "/junkyard-game/assets/stats/2.png",
@@ -41,7 +41,7 @@ const FILES_TO_CACHE = [
   "/junkyard-game/assets/vehicles/9-0.png",
   "/junkyard-game/assets/vehicles/9-1.png",
   "/junkyard-game/assets/vehicles/10-0.png",
-  "/junkyard-game/assets/vehicles/10-1.png"
+  "/junkyard-game/assets/vehicles/10-1.png",
 ];
 
 self.addEventListener("install", (evt) => {
