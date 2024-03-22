@@ -41,7 +41,7 @@ const FILES_TO_CACHE = [
   "/junkyard-game/assets/vehicles/9-0.png",
   "/junkyard-game/assets/vehicles/9-1.png",
   "/junkyard-game/assets/vehicles/10-0.png",
-  "/junkyard-game/assets/vehicles/10-1.png"
+  "/junkyard-game/assets/vehicles/10-1.png",
 ];
 
 self.addEventListener("install", (evt) => {
