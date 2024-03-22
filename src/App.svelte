@@ -53,7 +53,7 @@
       const data = $save;
 
       if (data.energytime === 0) {
-        data.energy = Math.min(data.energy + 10, data.level * 100);
+        data.energy = Math.min(data.energy + data.level, data.level * 100);
         data.energytime = 30;
       } else {
         data.energytime = data.energytime - 1;
