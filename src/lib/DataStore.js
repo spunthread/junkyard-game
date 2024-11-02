@@ -5,7 +5,7 @@ const defaultSave = {
   points: 0,
   level: 1,
   energy: 30,
-  energytime: 30,
+  energytime: 10,
   parkingvehicles: new Map(),
   parkingmax: 1,
   garagevehicles: new Map(),

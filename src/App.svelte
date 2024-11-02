@@ -54,7 +54,7 @@
 
       if (data.energytime === 0) {
         data.energy = Math.min(data.energy + data.level, data.level * 100);
-        data.energytime = 30;
+        data.energytime = 10;
       } else {
         data.energytime = data.energytime - 1;
       }

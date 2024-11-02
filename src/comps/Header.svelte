@@ -20,7 +20,7 @@
     <img src={`assets/stats/2.png`} alt="img" />
     <figcaption>
       <p class="txt-w">{$save.energy} / {$save.level * 100}</p>
-      <progress max={30} value={30 - $save.energytime} />
+      <progress max={10} value={10 - $save.energytime} />
     </figcaption>
   </figure>
 </header>
